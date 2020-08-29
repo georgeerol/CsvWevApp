@@ -1,0 +1,4 @@
+[2020-08-28 19:23:43,510] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-28 19:23:43,514] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-28 19:23:44,048] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-28 19:23:44,059] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
