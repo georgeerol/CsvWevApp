@@ -9,7 +9,7 @@ from flask import Flask
 app = Flask(__name__)
 from flask_cors import CORS
 load_dotenv()
-cors = CORS(app, resources={r"/csvwebapp/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/upload/*": {"origins": "*"}})
 
 
 class BaseEnvironment:
@@ -25,6 +25,7 @@ class BaseEnvironment:
         self.database_uri()
         self.track_modifications()
         self.propagate_exceptions()
+        self.first_request()
         self.debug()
         self.test()
         self.init()

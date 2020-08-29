@@ -3,7 +3,7 @@
 release_version: 1.0
 
 # App Path
-url_path: /csvwebapp/v1
+url_path: /upload
 
 #  Logging information
 version: 1
@@ -23,7 +23,7 @@ handlers:
   file_handler:
     class: logging.FileHandler
     level: INFO
-    filename: orchestration.log
+    filename: csvwebapp.log
     formatter: extended
 
 loggers:
