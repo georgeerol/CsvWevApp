@@ -9,4 +9,4 @@ class DevPostgresDB(BaseEnvironment):
         logging.info("Running locally with a Postgres Database")
 
     def database_uri(self):
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('dev_local_sqlalchemy_db_uri')
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('dev_local_postgres_db_uri')

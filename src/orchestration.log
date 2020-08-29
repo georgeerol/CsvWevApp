@@ -2,3 +2,64 @@
 [2020-08-28 19:23:43,514] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
 [2020-08-28 19:23:44,048] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
 [2020-08-28 19:23:44,059] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-28 20:21:00,691] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-28 20:21:00,694] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-28 20:21:01,258] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-28 20:21:01,267] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-28 20:24:06,822] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Detected change in '/Users/212361198/SourceCode/Home/Web/CsvWebApp/src/dev/env/base_env.py', reloading
+[2020-08-28 20:24:06,861] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-28 20:24:07,456] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-28 20:24:07,464] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-28 20:39:57,065] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-28 20:39:57,066] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-28 20:39:57,634] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-28 20:39:57,646] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-28 20:40:01,606] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [28/Aug/2020 20:40:01] "[37mGET /csvwebapp/v1 HTTP/1.1[0m" 200 -
+[2020-08-28 20:41:27,095] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [28/Aug/2020 20:41:27] "[37mGET /csvwebapp/v1 HTTP/1.1[0m" 200 -
+[2020-08-28 20:41:35,588] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [28/Aug/2020 20:41:35] "[37mPOST /csvwebapp/v1 HTTP/1.1[0m" 200 -
+[2020-08-28 20:43:59,710] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [28/Aug/2020 20:43:59] "[33mPOST / HTTP/1.1[0m" 404 -
+[2020-08-29 00:33:51,681] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-29 00:33:51,683] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-29 00:33:52,232] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-29 00:33:52,241] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-29 00:35:12,577] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-29 00:35:12,579] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-29 00:35:13,134] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-29 00:35:13,142] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-29 00:36:32,422] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-29 00:36:32,425] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-29 00:36:33,705] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-29 00:36:33,719] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-29 00:37:05,924] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [29/Aug/2020 00:37:05] "[37mOPTIONS /csvwebapp/v1 HTTP/1.1[0m" 200 -
+[2020-08-29 00:40:17,491] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-29 00:40:17,493] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-29 00:40:18,688] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-29 00:40:18,698] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-29 00:40:40,955] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [29/Aug/2020 00:40:40] "[37mOPTIONS /csvwebapp/v1 HTTP/1.1[0m" 200 -
+[2020-08-29 00:41:03,564] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [29/Aug/2020 00:41:03] "[35m[1mPOST /csvwebapp/v1 HTTP/1.1[0m" 500 -
+[2020-08-29 00:41:38,838] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [29/Aug/2020 00:41:38] "[35m[1mPOST /csvwebapp/v1 HTTP/1.1[0m" 500 -
+[2020-08-29 00:42:28,374] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-29 00:42:28,376] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-29 00:42:28,948] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-29 00:42:28,956] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-29 00:44:19,693] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-29 00:44:19,696] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-29 00:44:20,879] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-29 00:44:20,892] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-29 00:44:27,870] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [29/Aug/2020 00:44:27] "[37mGET /csvwebapp/v1 HTTP/1.1[0m" 200 -
+[2020-08-29 00:46:36,248] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-29 00:46:36,250] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-29 00:46:37,490] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-29 00:46:37,499] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-29 00:46:51,920] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [29/Aug/2020 00:46:51] "[37mPOST /csvwebapp/v1 HTTP/1.1[0m" 200 -
+[2020-08-29 00:47:01,854] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [29/Aug/2020 00:47:01] "[37mOPTIONS /csvwebapp/v1 HTTP/1.1[0m" 200 -
+[2020-08-29 00:48:38,721] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-29 00:48:38,723] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-29 00:48:39,924] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-29 00:48:39,933] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-29 00:51:31,269] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+[2020-08-29 00:51:31,271] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Restarting with stat
+[2020-08-29 00:51:32,461] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} WARNING -  * Debugger is active!
+[2020-08-29 00:51:32,470] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO -  * Debugger PIN: 117-869-711
+[2020-08-29 00:52:28,356] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [29/Aug/2020 00:52:28] "[37mOPTIONS /csvwebapp/v1 HTTP/1.1[0m" 200 -
+[2020-08-29 00:52:51,692] {/Users/212361198/anaconda/envs/flask38/lib/python3.8/site-packages/werkzeug/_internal.py:113} INFO - 127.0.0.1 - - [29/Aug/2020 00:52:51] "[37mPOST /csvwebapp/v1 HTTP/1.1[0m" 200 -

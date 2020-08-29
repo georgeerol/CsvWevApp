@@ -14,7 +14,9 @@ class CsvWebService(Resource):
     def get(cls):
         return Online.get()
 
-    @classmethod
-    def post(self):
-        return {'name': 'george'}
 
+    @classmethod
+    def post(cls):
+        data = request.get_data(as_text=True)
+        print(data)
+        return {'name': 'george'}

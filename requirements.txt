@@ -6,3 +6,4 @@ Flask-RESTful
 Flask-SQLAlchemy
 PyYAML
 flask-restful-swagger
+flask_cors

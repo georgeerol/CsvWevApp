@@ -7,14 +7,17 @@ from dev.util.logger import logger
 from flask import Flask
 
 app = Flask(__name__)
+from flask_cors import CORS
 load_dotenv()
+cors = CORS(app, resources={r"/csvwebapp/*": {"origins": "*"}})
 
 
 class BaseEnvironment:
     def __init__(self):
         self.app = app
         self.db = db
-        self.port = 5000
+        self.host = os.getenv('app_host')
+        self.port = os.getenv('app_port')
 
     def build(self):
         self.log_setup()
@@ -33,6 +36,10 @@ class BaseEnvironment:
     @abstractmethod
     def database_uri(self):
         raise NotImplementedError("database_config() must be defined in subclass")
+
+    @abstractmethod
+    def log_init_message(self):
+        raise NotImplementedError("log_init_message() must be defined in subclass")
 
     def track_modifications(self, sql_track_mod=False):
         self.app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = sql_track_mod
@@ -58,6 +65,9 @@ class BaseEnvironment:
         @self.app.before_first_request
         def create_table():
             self.db.create_all()
+
+    def get_host(self):
+        return self.host
 
     def get_port(self):
         return self.port

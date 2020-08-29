@@ -5,7 +5,9 @@ from dev.env.base_env import app
 from dev.env.dev_postgres_db import DevPostgresDB
 from dev.env.dev_sqllite_db import DevSqlLiteDB
 from dev.service.csv_web_service import CsvWebService
+from dev.service.csv_web_service import Online
 from dev.util.helper.get_config import get_config_value
+from flask_cors import CORS
 
 load_dotenv()
 
@@ -15,9 +17,14 @@ else:
     env = DevSqlLiteDB()
 env.build()
 
+HOST = env.get_host()
 PORT = env.get_port()
+
 flask_api = Api(app)
 flask_api.add_resource(CsvWebService, get_config_value('url_path'))
+flask_api.add_resource(Online, '/')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=PORT)
+    app.run(host=HOST, port=PORT)
+
+
