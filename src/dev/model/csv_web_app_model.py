@@ -24,6 +24,13 @@ class CsvWebAppModel(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def find_by_filename(cls, filename):
+        return cls.query.filter_by(filename=filename).first()
+
+    @classmethod
+    def find_all(cls):
+        return cls.query.all()
+
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()

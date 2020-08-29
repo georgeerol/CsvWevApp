@@ -3,7 +3,9 @@
 release_version: 1.0
 
 # App Path
-url_path: /upload
+upload_file_url_path: /csvwebapp/upload
+get_list_of_files: /csvwebapp/files
+download_a_file: /csvwebapp/files/{fileId}
 
 #  Logging information
 version: 1
