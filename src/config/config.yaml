@@ -2,10 +2,13 @@
 # App Release Version
 release_version: 1.0
 
-# App Path
+# App URI Path
 upload_file_url_path: /csvwebapp/upload
 get_list_of_files: /csvwebapp/files
-download_a_file: /csvwebapp/files/{fileId}
+download_a_file: /csvwebapp/files/<string:filename>
+
+# Temp Download Folder
+temp_download_folder: ./temp
 
 #  Logging information
 version: 1
