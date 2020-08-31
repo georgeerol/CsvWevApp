@@ -20,7 +20,7 @@ class UploadFilesService {
 
 
     displayFile(filename) {
-        return axios.get(`${API_URL}/files`)
+        return axios.get(`${API_URL}/display/file/${filename}`)
     }
 
     download(filename) {

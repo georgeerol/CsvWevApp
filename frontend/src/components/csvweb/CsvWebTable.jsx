@@ -30,7 +30,7 @@ class Table extends React.Component {
 
     render() {
         return (
-            <div>
+            <div disabled={true}>
                 <table>
                     <thead>
                     <tr>{this.getHeader()}</tr>

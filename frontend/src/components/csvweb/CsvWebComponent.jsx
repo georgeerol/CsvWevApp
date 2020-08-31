@@ -8,13 +8,19 @@ class CsvWebComponent extends Component {
         this.selectFile = this.selectFile.bind(this);
         this.download = this.download.bind(this);
         this.upload = this.upload.bind(this);
+        this.toggleBox = this.toggleBox.bind(this);
+        this.displayClicked = this.displayClicked.bind(this);
+        this.getKeys = this.getKeys.bind(this);
+        this.getHeader = this.getHeader.bind(this);
+        this.getRowsData = this.getRowsData.bind(this);
 
         this.state = {
             selectedFiles: undefined,
             currentFile: undefined,
+            display_csv_data: undefined,
+            isDisplayActive: false,
             progress: 0,
             message: "",
-
             fileInfos: [],
         };
     }
@@ -27,16 +33,65 @@ class CsvWebComponent extends Component {
         });
     }
 
+    handleShow = () => {
+        const {isDisplayActive} = this.state;
+        this.setState({
+            isDisplayActive: !isDisplayActive,
+        })
+    };
+
+    displayClicked(filename){
+        console.log(filename);
+        UploadService.displayFile(filename).then(response => {
+            this.setState({display_csv_data:response.data});
+
+        }).then(()=>{
+            this.handleShow();
+        }).catch(()=>{
+
+        });
+
+    }
+
+    getKeys = function () {
+        console.log("Stephane");
+        console.log(this.state.display_csv_data.csv_data[0]);
+        return Object.keys(this.state.display_csv_data.csv_data[0]);
+    };
+
+    getHeader = function () {
+        var keys = this.getKeys();
+        return keys.map((key, index) => {
+            return <th key={key}>{key.toUpperCase()}</th>
+        })
+    };
+
+    getRowsData = function () {
+        var items = this.state.display_csv_data.csv_data;
+        var keys = this.getKeys();
+        return items.map((row, index) => {
+            return <tr key={index}><RenderRow key={index} data={row} keys={keys}/></tr>
+        });
+    };
+
+
+
     selectFile(event) {
         this.setState({
             selectedFiles: event.target.files,
         });
     }
 
+    toggleBox() {
+        const {opened} = this.state;
+        this.setState({
+            opened: !opened,
+        });
+    }
+
     download(filename) {
         console.log(filename);
         UploadService.download(filename).then(response => {
-            console.log('george')
             console.log(response);
         });
     }
@@ -115,7 +170,7 @@ class CsvWebComponent extends Component {
                             <tr key={index}>
                                 <td><a href={file.url}>{file.name}</a></td>
                                 <td>
-                                    <button className="btn btn-success">
+                                    <button className="btn btn-success" onClick={()=>this.displayClicked(file.name)}>
                                         Display
                                     </button>
                                 </td>
@@ -128,6 +183,21 @@ class CsvWebComponent extends Component {
                         ))}
                         </tbody>
                     </table>
+                    {this.state.isDisplayActive ?
+                        <div>
+                            <table>
+                                <thead>
+                                <tr>{this.getHeader()}</tr>
+                                </thead>
+                                <tbody>
+                                {this.getRowsData()}
+                                </tbody>
+                            </table>
+                        </div>
+                        : null
+                    }
+
+
                 </div>
                 {currentFile && (
                     <div className="progress">
@@ -150,5 +220,11 @@ class CsvWebComponent extends Component {
 
 
 }
+
+const RenderRow = (props) => {
+    return props.keys.map((key, index) => {
+        return <td key={props.data[key]}>{props.data[key]}</td>
+    })
+};
 
 export default CsvWebComponent;
