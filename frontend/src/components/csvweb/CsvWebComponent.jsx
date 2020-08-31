@@ -6,6 +6,7 @@ class CsvWebComponent extends Component {
     constructor(props) {
         super(props);
         this.selectFile = this.selectFile.bind(this);
+        this.download = this.download.bind(this);
         this.upload = this.upload.bind(this);
 
         this.state = {
@@ -32,9 +33,17 @@ class CsvWebComponent extends Component {
         });
     }
 
+    download(filename) {
+        console.log(filename);
+        UploadService.download(filename).then(response => {
+            console.log('george')
+            console.log(response);
+        });
+    }
+
     upload() {
         let currentFile = this.state.selectedFiles[0];
-
+        console.log('george');
         this.setState({
             progress: 0,
             currentFile: currentFile,
@@ -80,6 +89,46 @@ class CsvWebComponent extends Component {
 
         return (
             <div>
+                <h1> Csv Web Application </h1>
+
+                <label className="btn btn-default">
+                    <input type="file" onChange={this.selectFile}/>
+                </label>
+
+                <button
+                    className="btn btn-success"
+                    disabled={!selectedFiles}
+                    onClick={this.upload}
+                >Upload
+                </button>
+
+                <div className="alert alert-light" role="alert">
+                    {message}
+                </div>
+
+                <div className="container">
+                    <div className="card-header">List of CSVs</div>
+                    <table className="table">
+                        <tbody>
+                        {fileInfos &&
+                        fileInfos.map((file, index) => (
+                            <tr key={index}>
+                                <td><a href={file.url}>{file.name}</a></td>
+                                <td>
+                                    <button className="btn btn-success">
+                                        Display
+                                    </button>
+                                </td>
+                                <td>
+                                    <button className="btn btn-warning">
+                                        Date Statistics
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
                 {currentFile && (
                     <div className="progress">
                         <div
@@ -95,33 +144,6 @@ class CsvWebComponent extends Component {
                     </div>
                 )}
 
-                <label className="btn btn-default">
-                    <input type="file" onChange={this.selectFile}/>
-                </label>
-
-                <button
-                    className="btn btn-success"
-                    disabled={!selectedFiles}
-                    onClick={this.upload}
-                >
-                    Upload
-                </button>
-
-                <div className="alert alert-light" role="alert">
-                    {message}
-                </div>
-
-                <div className="card">
-                    <div className="card-header">List of Files</div>
-                    <ul className="list-group list-group-flush">
-                        {fileInfos &&
-                        fileInfos.map((file, index) => (
-                            <li className="list-group-item" key={index}>
-                                <a href={file.url}>{file.name}</a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
             </div>
         );
     }

@@ -26,6 +26,14 @@ class CsvWebGetFilesService(Resource):
         return data_list
 
 
+class CsvWebDisplayService(Resource):
+    @classmethod
+    def get(cls, filename):
+        model = CsvWebAppModel.find_by_filename(filename)
+        dict_data = model.csv_data
+        return dict_data
+
+
 class CsvWebDownloadService(Resource):
     @classmethod
     def get(cls, filename):
