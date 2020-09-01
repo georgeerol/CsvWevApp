@@ -6,6 +6,7 @@ release_version: 1.0
 upload_file_url_path: /csvwebapp/upload
 get_list_of_files: /csvwebapp/files
 download_a_file: /csvwebapp/files/<string:filename>
+display_a_file: /csvwebapp/display/file/<string:filename>
 
 # Temp Download Folder
 temp_download_folder: ./temp
