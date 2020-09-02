@@ -65,6 +65,15 @@ class CsvWebAppCsvModel(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    @classmethod
+    def do_statistics(cls, filename,):
+        print(filename)
+        year = "2018"
+        query = "select count(*) as people from (select count(*), date from {table}  where date like ?  and " \
+                "filename_id = ? group by date ) ".format(table=cls.__tablename__)
+        result = db.engine.execute(query, ("%{}".format(year),'example_small.csv'))
+        return result.fetchone()
+
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()

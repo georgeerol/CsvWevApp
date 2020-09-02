@@ -34,6 +34,15 @@ class CsvWebDisplayService(Resource):
         return dict_data
 
 
+class CsvWebStatisticsService(Resource):
+    @classmethod
+    def get(cls, filename):
+        print(filename)
+        model = CsvWebAppCsvModel.do_statistics(filename)
+        print(model)
+        return model
+
+
 class CsvWebDownloadService(Resource):
     @classmethod
     def get(cls, filename):
