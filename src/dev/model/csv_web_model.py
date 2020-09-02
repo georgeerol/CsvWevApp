@@ -8,12 +8,16 @@ class CsvWebAppFileModel(db.Model):
     filename = db.Column(db.String(), primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.now)
     content_type = db.Column(db.String())
-    csv_data = db.relationship('CsvWebAppCsvModel')
+    csv_data = db.relationship('CsvWebAppCsvModel', lazy='dynamic')
 
     def __init__(self, filename, content_type, csv_data):
         self.filename = filename
         self.content_type = content_type
         self.csv_data = csv_data
+
+    def json(self):
+        return {'filename': self.filename, 'content_type': self.content_type,
+                'csv_data': [row.json() for row in self.csv_data.all()]}
 
     def save_to_db(self):
         db.session.add(self)
@@ -61,17 +65,22 @@ class CsvWebAppCsvModel(db.Model):
         self.state = state
         self.street = street
 
+    def json(self):
+        return {'guid': self.guid, 'name': self.name, 'first': self.first, 'last': self.last, 'email': self.email,
+                'value': self.value, 'date': self.date, 'phone': self.phone, 'age': self.age, 'state': self.state,
+                'street': self.street}
+
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
-    def do_statistics(cls, filename,):
+    def do_statistics(cls, filename, ):
         print(filename)
         year = "2018"
         query = "select count(*) as people from (select count(*), date from {table}  where date like ?  and " \
                 "filename_id = ? group by date ) ".format(table=cls.__tablename__)
-        result = db.engine.execute(query, ("%{}".format(year),'example_small.csv'))
+        result = db.engine.execute(query, ("%{}".format(year), 'example_small.csv'))
         return result.fetchone()
 
     def delete_from_db(self):

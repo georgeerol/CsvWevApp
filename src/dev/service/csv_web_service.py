@@ -30,7 +30,7 @@ class CsvWebDisplayService(Resource):
     @classmethod
     def get(cls, filename):
         model = CsvWebAppFileModel.find_by_filename(filename)
-        dict_data = model.csv_data
+        dict_data = model.json()
         return dict_data
 
 
@@ -47,7 +47,7 @@ class CsvWebDownloadService(Resource):
     @classmethod
     def get(cls, filename):
         model = CsvWebAppFileModel.find_by_filename(filename)
-        dict_data = model.csv_data
+        dict_data = model.json()
         csv_columns = dict_data['csv_data'][0].keys()
         path = get_config_value('temp_download_folder')
         if not os.path.exists(path):
