@@ -14,7 +14,7 @@ class CsvWebService {
         });
     }
 
-    getFiles(){
+    getCsvFiles(){
         return axios.get(`${API_URL}/files`);
     }
 

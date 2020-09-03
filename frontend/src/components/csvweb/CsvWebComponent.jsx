@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Column, Table} from "react-virtualized";
-import 'react-virtualized/styles.css'; // only needs to be imported once
+import 'react-virtualized/styles.css';
 import CsvWebService from "../../service/CsvWebService"
 
 const TABLE_TOTAL_WIDTH = 1900;
@@ -34,7 +34,7 @@ class CsvWebComponent extends Component {
     }
 
     componentDidMount() {
-        CsvWebService.getFiles().then((response) => {
+        CsvWebService.getCsvFiles().then((response) => {
             this.setState({
                 fileData: response.data,
             });
@@ -105,7 +105,7 @@ class CsvWebComponent extends Component {
                 this.setState({
                     message: response.data.message,
                 });
-                return CsvWebService.getFiles();
+                return CsvWebService.getCsvFiles();
             })
             .then((files) => {
                 this.setState({
