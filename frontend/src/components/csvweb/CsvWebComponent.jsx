@@ -19,19 +19,14 @@ class CsvWebComponent extends Component {
             selectedFiles: undefined,
             currentFile: undefined,
             display_csv_data: undefined,
-            is_display_active: false,
+            isDisplayActive: false,
             stats_data:undefined,
-            is_stats_display_active:false,
+            isStatsDisplayActive:false,
             hasMore: true,
             progress: 0,
             message: "",
             fileInfos: [],
 
-            widths: {
-                name: 0.33,
-                location: 0.33,
-                description: 0.33
-            }
         };
     }
 
@@ -44,16 +39,16 @@ class CsvWebComponent extends Component {
     }
 
     handleDisplayShow = () => {
-        const {is_display_active} = this.state;
+        const {isDisplayActive} = this.state;
         this.setState({
-            is_display_active: !is_display_active,
+            isDisplayActive: !isDisplayActive,
         })
     };
 
     handleStatsDisplayShow = () => {
-        const {is_stats_display_active} = this.state;
+        const {isStatsDisplayActive} = this.state;
         this.setState({
-            is_stats_display_active: !is_stats_display_active,
+            isStatsDisplayActive: !isStatsDisplayActive,
         })
     };
 
@@ -182,7 +177,7 @@ class CsvWebComponent extends Component {
                         </tbody>
                     </table>
 
-                    {this.state.is_stats_display_active ?
+                    {this.state.isStatsDisplayActive ?
 
 
                         <Table
@@ -215,7 +210,7 @@ class CsvWebComponent extends Component {
                 <br></br>
                 <br></br>
                 <br></br>
-                {this.state.is_display_active ?
+                {this.state.isDisplayActive ?
 
 
                     <Table
