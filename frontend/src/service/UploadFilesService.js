@@ -23,9 +23,8 @@ class UploadFilesService {
         return axios.get(`${API_URL}/display/file/${filename}`)
     }
 
-    download(filename) {
-        console.log(`${API_URL}/files/${filename}`);
-        return axios.get(`${API_URL}/files/${filename}`)
+    stats(filename) {
+        return axios.get(`${API_URL}/statistics/file/${filename}`)
     }
 
 
