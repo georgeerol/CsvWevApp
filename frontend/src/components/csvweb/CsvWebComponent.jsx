@@ -1,108 +1,123 @@
 import React, {Component} from "react";
 import {Column, Table} from "react-virtualized";
-import 'react-virtualized/styles.css'; // only needs to be imported once
-import Draggable from "react-draggable";
-import UploadService from "../../service/UploadFilesService"
+import 'react-virtualized/styles.css';
+import CsvWebService from "../../service/CsvWebService"
 
-const TOTAL_WIDTH = 1900;
+const TABLE_TOTAL_WIDTH = 1900;
+const TABLE_HEIGHT = 300;
+const HEADER_HEIGHT = 20;
+const ROW_HEIGHT = 30;
 
-
+/**
+ * This class is the CSV Web Application Component
+ */
 class CsvWebComponent extends Component {
     constructor(props) {
         super(props);
-        this.selectFile = this.selectFile.bind(this);
-        this.upload = this.upload.bind(this);
+        this.chooseCsvFile = this.chooseCsvFile.bind(this);
+        this.uploadClicked = this.uploadClicked.bind(this);
         this.displayClicked = this.displayClicked.bind(this);
-        this.getKeys = this.getKeys.bind(this);
-        this.getHeader = this.getHeader.bind(this);
-        this.getRowsData = this.getRowsData.bind(this);
+        this.statsClicked = this.statsClicked.bind(this);
 
 
         this.state = {
-            selectedFiles: undefined,
-            currentFile: undefined,
-            display_csv_data: undefined,
+            chosenCsvFiles: undefined,
+            currentCsvFile: undefined,
+            displayCsvData: undefined,
+            statsCsvData: undefined,
             isDisplayActive: false,
-            hasMore: true,
+            isStatsDisplayActive: false,
             progress: 0,
             message: "",
-            fileInfos: [],
+            fileData: [],
 
-            widths: {
-                name: 0.33,
-                location: 0.33,
-                description: 0.33
-            }
         };
     }
 
     componentDidMount() {
-        UploadService.getFiles().then((response) => {
+        CsvWebService.getCsvFiles().then((response) => {
             this.setState({
-                fileInfos: response.data,
+                fileData: response.data,
             });
         });
     }
 
-    handleShow = () => {
+    /**
+     * Toggle on or off the provided csv file on the web page
+     *
+     */
+    handleDisplayShow = () => {
         const {isDisplayActive} = this.state;
         this.setState({
             isDisplayActive: !isDisplayActive,
         })
     };
+    /**
+     * Toggle on or off the provided stats on the web page
+     */
+    handleStatsDisplayShow = () => {
+        const {isStatsDisplayActive} = this.state;
+        this.setState({
+            isStatsDisplayActive: !isStatsDisplayActive,
+        })
+    };
 
-    displayClicked(filename) {
+    /**
+     *  Fetch stats data and display them when the Data Statistics button is pressed
+     * @param filename - the filename of stats data
+     */
+    statsClicked(filename) {
         console.log(filename);
-        UploadService.displayFile(filename).then(response => {
-            this.setState({display_csv_data: response.data});
-
+        CsvWebService.statsCsvFile(filename).then(response => {
+            this.setState({statsCsvData: response.data});
+            console.log(this.state.statsCsvData)
         }).then(() => {
-            this.handleShow();
-            console.log("LALA LAND");
-            console.log(this.state.display_csv_data.csv_data)
+            this.handleStatsDisplayShow();
         }).catch(() => {
 
         });
 
     }
 
-    getKeys = function () {
-        console.log("Stephane");
-        console.log(this.state.display_csv_data.csv_data[0]);
-        return Object.keys(this.state.display_csv_data.csv_data[0]);
-    };
+    /**
+     * Fetch csv data and display them when the Display button is pressed
+     * @param filename - the csv filename
+     */
+    displayClicked(filename) {
+        console.log(filename);
+        CsvWebService.displayCsvFile(filename).then(response => {
+            this.setState({displayCsvData: response.data});
 
-    getHeader = function () {
-        var keys = this.getKeys();
-        return keys.map((key, index) => {
-            return <th key={key}>{key.toUpperCase()}</th>
-        })
-    };
+        }).then(() => {
+            this.handleDisplayShow();
+        }).catch(() => {
 
-    getRowsData = function () {
-        var items = this.state.display_csv_data.csv_data;
-        var keys = this.getKeys();
-        return items.map((row, index) => {
-            return <tr key={index}><RenderRow key={index} data={row} keys={keys}/></tr>
         });
-    };
 
+    }
 
-    selectFile(event) {
+    /**
+     * Get the chosen csv file from the <type= 'file'> element.
+     * @param event
+     */
+    chooseCsvFile(event) {
         this.setState({
-            selectedFiles: event.target.files,
+            chosenCsvFiles: event.target.files,
         });
     }
 
-
-    upload() {
-        let currentFile = this.state.selectedFiles[0];
+    /**
+     *  Upload the chosen file when the Upload button is clicked
+     */
+    uploadClicked() {
+        // accessing the current csv file as the first data
+        let currentFile = this.state.chosenCsvFiles[0];
         this.setState({
             progress: 0,
-            currentFile: currentFile,
+            currentCsvFile: currentFile,
         });
 
-        UploadService.upload(currentFile, (event) => {
+        CsvWebService.uploadCsvFile(currentFile, (event) => {
             this.setState({
                 progress: Math.round((100 * event.loaded) / event.total),
 
@@ -112,35 +127,34 @@ class CsvWebComponent extends Component {
                 this.setState({
                     message: response.data.message,
                 });
-                return UploadService.getFiles();
+                return CsvWebService.getCsvFiles();
             })
             .then((files) => {
                 this.setState({
-                    fileInfos: files.data,
+                    fileData: files.data,
                 });
             })
             .catch(() => {
                 this.setState({
                     progress: 0,
-                    message: "Could not upload the file!",
-                    currentFile: undefined,
+                    message: "Unable to upload the file! Make sure it's the right csv file.",
+                    currentCsvFile: undefined,
                 });
             });
 
         this.setState({
-            selectedFiles: undefined,
+            chosenCsvFiles: undefined,
         });
     }
 
 
     render() {
         const {
-            selectedFiles,
-            currentFile,
+            chosenCsvFiles,
+            currentCsvFile,
             progress,
             message,
-            widths,
-            fileInfos,
+            fileData,
         } = this.state;
 
 
@@ -148,28 +162,25 @@ class CsvWebComponent extends Component {
 
             <div>
                 <h1> Csv Web Application </h1>
+                <div className="container">
+                    <label className="btn btn-default">
+                        <input type="file" onChange={this.chooseCsvFile}/>
+                    </label>
 
-                <label className="btn btn-default">
-                    <input type="file" onChange={this.selectFile}/>
-                </label>
+                    <button className="btn btn-success" disabled={!chosenCsvFiles} onClick={this.uploadClicked}>Upload
+                    </button>
 
-                <button
-                    className="btn btn-success"
-                    disabled={!selectedFiles}
-                    onClick={this.upload}
-                >Upload
-                </button>
-
-                <div className="alert alert-light" role="alert">
-                    {message}
+                    <div className="alert alert-light" role="alert">
+                        {message}
+                    </div>
                 </div>
 
                 <div className="container">
                     <div className="card-header">List of CSVs</div>
                     <table className="table">
                         <tbody>
-                        {fileInfos &&
-                        fileInfos.map((file, index) => (
+                        {fileData &&
+                        fileData.map((file, index) => (
                             <tr key={index}>
                                 <td><a href={file.url}>{file.name}</a></td>
                                 <td>
@@ -178,7 +189,7 @@ class CsvWebComponent extends Component {
                                     </button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-warning">
+                                    <button className="btn btn-warning on" onClick={() => this.statsClicked(file.name)}>
                                         Date Statistics
                                     </button>
                                 </td>
@@ -187,92 +198,125 @@ class CsvWebComponent extends Component {
                         </tbody>
                     </table>
 
-                </div>
+                    {this.state.isStatsDisplayActive ?
+                        <Table
+                            width={TABLE_TOTAL_WIDTH / 8}
+                            height={TABLE_HEIGHT}
+                            headerHeight={HEADER_HEIGHT}
+                            rowHeight={ROW_HEIGHT}
+                            rowCount={this.state.statsCsvData.persons_per_year.length}
+                            rowGetter={({index}) => this.state.statsCsvData.persons_per_year[index]}
+                        >
 
+                            <Column
+                                dataKey="year"
+                                label="Year"
+                                width={TABLE_TOTAL_WIDTH / 8}
+                            />
+
+                            <Column
+                                dataKey="person"
+                                label="Person"
+                                width={TABLE_TOTAL_WIDTH / 8}
+                            />
+
+
+                        </Table>
+                        : null
+
+                    }
+                </div>
+                <br></br>
+                <br></br>
+                <br></br>
                 {this.state.isDisplayActive ?
 
 
                     <Table
-                        width={TOTAL_WIDTH}
-                        height={300}
-                        headerHeight={20}
-                        rowHeight={30}
-                        rowCount={this.state.display_csv_data.csv_data.length}
-                        rowGetter={({index}) => this.state.display_csv_data.csv_data[index]}
+                        width={TABLE_TOTAL_WIDTH}
+                        height={TABLE_HEIGHT}
+                        headerHeight={HEADER_HEIGHT}
+                        rowHeight={ROW_HEIGHT}
+                        rowCount={this.state.displayCsvData.csv_data.length}
+                        rowGetter={({index}) => this.state.displayCsvData.csv_data[index]}
                     >
                         <Column
                             headerRenderer={this.headerRenderer}
                             dataKey="guid"
                             label="Guid"
-                            width={2 * TOTAL_WIDTH}
+                            width={2 * TABLE_TOTAL_WIDTH}
                         />
 
                         <Column
                             headerRenderer={this.headerRenderer}
                             dataKey="name"
                             label="Name"
-                            width={TOTAL_WIDTH/2}
+                            width={TABLE_TOTAL_WIDTH / 2}
                         />
 
                         <Column
                             dataKey="first"
                             label="First"
-                            width={TOTAL_WIDTH/2}
+                            width={TABLE_TOTAL_WIDTH / 2}
                         />
 
                         <Column
                             dataKey="last"
                             label="Last"
-                            width={TOTAL_WIDTH/2}
+                            width={TABLE_TOTAL_WIDTH / 2}
                         />
 
                         <Column
                             dataKey="email"
                             label="Email"
-                            width={TOTAL_WIDTH}
+                            width={TABLE_TOTAL_WIDTH}
                         />
 
                         <Column
                             dataKey="value"
                             label="Value"
-                            width={TOTAL_WIDTH/3}
+                            width={TABLE_TOTAL_WIDTH / 3}
                         />
 
                         <Column
                             dataKey="date"
                             label="Date"
-                            width={TOTAL_WIDTH}
+                            width={TABLE_TOTAL_WIDTH}
                         />
 
                         <Column
                             dataKey="phone"
                             label="Phone"
-                            width={TOTAL_WIDTH}
+                            width={TABLE_TOTAL_WIDTH}
                         />
+
 
                         <Column
                             dataKey="age"
                             label="Age"
-                            width={TOTAL_WIDTH/5}
+                            width={TABLE_TOTAL_WIDTH / 5}
                         />
 
                         <Column
                             dataKey="state"
                             label="State"
-                            width={TOTAL_WIDTH/4}
+                            width={TABLE_TOTAL_WIDTH / 4}
                         />
 
                         <Column
                             dataKey="street"
                             label="Street"
-                            width={TOTAL_WIDTH}
+                            width={TABLE_TOTAL_WIDTH}
                         />
-
 
                     </Table>
                     : null
                 }
-                {currentFile && (
+                <br></br>
+                <br></br>
+                <br></br>
+
+                {currentCsvFile && (
                     <div className="progress">
                         <div
                             className="progress-bar progress-bar-info progress-bar-striped"
@@ -293,10 +337,5 @@ class CsvWebComponent extends Component {
 
 }
 
-const RenderRow = (props) => {
-    return props.keys.map((key, index) => {
-        return <td key={props.data[key]}>{props.data[key]}</td>
-    })
-};
 
 export default CsvWebComponent;

@@ -82,7 +82,6 @@ class CsvWebUploadService(Resource):
         data_list = []
 
         for row in reader:
-            print('george')
             # guid, name, first, last, email, value, date, phone, age, state, street
             csv_data = CsvWebAppCsvModel(row['guid'], row['name'], row['first'], row['last'], row['email'],
                                          row['value'], row['date'], row['phone'], row['age'], row['state'],
