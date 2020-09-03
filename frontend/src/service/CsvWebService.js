@@ -3,7 +3,7 @@ import {API_URL} from "../Constants";
 
 
 class CsvWebService {
-    upload(file, onUploadProgress) {
+    uploadCsvFile(file, onUploadProgress) {
         let formData = new FormData();
         formData.append("file", file);
         return axios.post(`${API_URL}/upload`, formData, {

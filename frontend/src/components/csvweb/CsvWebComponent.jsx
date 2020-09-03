@@ -13,7 +13,7 @@ class CsvWebComponent extends Component {
     constructor(props) {
         super(props);
         this.selectFile = this.selectFile.bind(this);
-        this.uploadClicked= this.uploadClicked.bind(this);
+        this.uploadClicked = this.uploadClicked.bind(this);
         this.displayClicked = this.displayClicked.bind(this);
         this.statsClicked = this.statsClicked.bind(this);
 
@@ -23,8 +23,8 @@ class CsvWebComponent extends Component {
             currentFile: undefined,
             display_csv_data: undefined,
             isDisplayActive: false,
-            stats_data:undefined,
-            isStatsDisplayActive:false,
+            stats_data: undefined,
+            isStatsDisplayActive: false,
             hasMore: true,
             progress: 0,
             message: "",
@@ -95,7 +95,7 @@ class CsvWebComponent extends Component {
             currentFile: currentFile,
         });
 
-        CsvWebService.upload(currentFile, (event) => {
+        CsvWebService.uploadCsvFile(currentFile, (event) => {
             this.setState({
                 progress: Math.round((100 * event.loaded) / event.total),
 
@@ -115,7 +115,7 @@ class CsvWebComponent extends Component {
             .catch(() => {
                 this.setState({
                     progress: 0,
-                    message: "Could not upload the file!",
+                    message: "Unable to upload the file! Make sure it's the right csv file.",
                     currentFile: undefined,
                 });
             });
@@ -140,20 +140,17 @@ class CsvWebComponent extends Component {
 
             <div>
                 <h1> Csv Web Application </h1>
+                <div className="container">
+                    <label className="btn btn-default">
+                        <input type="file" onChange={this.selectFile}/>
+                    </label>
 
-                <label className="btn btn-default">
-                    <input type="file" onChange={this.selectFile}/>
-                </label>
+                    <button className="btn btn-success" disabled={!selectedFiles} onClick={this.uploadClicked}>Upload
+                    </button>
 
-                <button
-                    className="btn btn-success"
-                    disabled={!selectedFiles}
-                    onClick={this.uploadClicked}
-                >Upload
-                </button>
-
-                <div className="alert alert-light" role="alert">
-                    {message}
+                    <div className="alert alert-light" role="alert">
+                        {message}
+                    </div>
                 </div>
 
                 <div className="container">
@@ -180,8 +177,6 @@ class CsvWebComponent extends Component {
                     </table>
 
                     {this.state.isStatsDisplayActive ?
-
-
                         <Table
                             width={TABLE_TOTAL_WIDTH/8}
                             height={TABLE_HEIGHT}
@@ -194,13 +189,13 @@ class CsvWebComponent extends Component {
                             <Column
                                 dataKey="year"
                                 label="Year"
-                                width={TABLE_TOTAL_WIDTH/8}
+                                width={TABLE_TOTAL_WIDTH / 8}
                             />
 
                             <Column
                                 dataKey="person"
                                 label="Person"
-                                width={TABLE_TOTAL_WIDTH/8}
+                                width={TABLE_TOTAL_WIDTH / 8}
                             />
 
 
