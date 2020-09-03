@@ -1,6 +1,18 @@
 # CSV Web Application
 A full stack web application that handle CSV data
 
+## Technology
+### Front End
+- React - Front End View Framework.
+- Axios - Front End Interface With a Backend REST API.
+- BootStrap - Styling Pages.
+
+### Back End
+- Flask-Restful - Object Oriented Programming(OOP) Backend REST API.
+- Flask-SQLAlchemy - Object-Relational Mappers(ORM), high-level abstraction that transfer database data into objects.
+- SQLite or PostgreSQL - Setup to work with the Relational Database SQLite or PostgreSQL  
+
+
 # Requirements
 The application have the ability to:
 - [x] Upload a CSV file 
