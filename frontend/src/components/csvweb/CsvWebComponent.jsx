@@ -1,9 +1,12 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import {Column, Table} from "react-virtualized";
 import 'react-virtualized/styles.css'; // only needs to be imported once
-import UploadService from "../../service/UploadFilesService"
+import CsvWebService from "../../service/CsvWebService"
 
-const TOTAL_WIDTH = 1900;
+const TABLE_TOTAL_WIDTH = 1900;
+const TABLE_HEIGHT = 300;
+const HEADER_HEIGHT = 20;
+const ROW_HEIGHT = 30;
 
 
 class CsvWebComponent extends Component {
@@ -31,7 +34,7 @@ class CsvWebComponent extends Component {
     }
 
     componentDidMount() {
-        UploadService.getFiles().then((response) => {
+        CsvWebService.getFiles().then((response) => {
             this.setState({
                 fileInfos: response.data,
             });
@@ -54,7 +57,7 @@ class CsvWebComponent extends Component {
 
     statsClicked(filename) {
         console.log(filename);
-        UploadService.stats(filename).then(response => {
+        CsvWebService.stats(filename).then(response => {
             this.setState({stats_data: response.data});
             console.log(this.state.stats_data)
         }).then(() => {
@@ -67,7 +70,7 @@ class CsvWebComponent extends Component {
 
     displayClicked(filename) {
         console.log(filename);
-        UploadService.displayFile(filename).then(response => {
+        CsvWebService.displayFile(filename).then(response => {
             this.setState({display_csv_data: response.data});
 
         }).then(() => {
@@ -92,7 +95,7 @@ class CsvWebComponent extends Component {
             currentFile: currentFile,
         });
 
-        UploadService.upload(currentFile, (event) => {
+        CsvWebService.upload(currentFile, (event) => {
             this.setState({
                 progress: Math.round((100 * event.loaded) / event.total),
 
@@ -102,7 +105,7 @@ class CsvWebComponent extends Component {
                 this.setState({
                     message: response.data.message,
                 });
-                return UploadService.getFiles();
+                return CsvWebService.getFiles();
             })
             .then((files) => {
                 this.setState({
@@ -129,7 +132,6 @@ class CsvWebComponent extends Component {
             currentFile,
             progress,
             message,
-            widths,
             fileInfos,
         } = this.state;
 
@@ -181,10 +183,10 @@ class CsvWebComponent extends Component {
 
 
                         <Table
-                            width={TOTAL_WIDTH/8}
-                            height={300}
-                            headerHeight={20}
-                            rowHeight={30}
+                            width={TABLE_TOTAL_WIDTH/8}
+                            height={TABLE_HEIGHT}
+                            headerHeight={HEADER_HEIGHT}
+                            rowHeight={ROW_HEIGHT}
                             rowCount={this.state.stats_data.persons_per_year.length}
                             rowGetter={({index}) => this.state.stats_data.persons_per_year[index]}
                         >
@@ -192,13 +194,13 @@ class CsvWebComponent extends Component {
                             <Column
                                 dataKey="year"
                                 label="Year"
-                                width={TOTAL_WIDTH/8}
+                                width={TABLE_TOTAL_WIDTH/8}
                             />
 
                             <Column
                                 dataKey="person"
                                 label="Person"
-                                width={TOTAL_WIDTH/8}
+                                width={TABLE_TOTAL_WIDTH/8}
                             />
 
 
@@ -214,10 +216,10 @@ class CsvWebComponent extends Component {
 
 
                     <Table
-                        width={TOTAL_WIDTH}
-                        height={300}
-                        headerHeight={20}
-                        rowHeight={30}
+                        width={TABLE_TOTAL_WIDTH}
+                        height={TABLE_HEIGHT}
+                        headerHeight={HEADER_HEIGHT}
+                        rowHeight={ROW_HEIGHT}
                         rowCount={this.state.display_csv_data.csv_data.length}
                         rowGetter={({index}) => this.state.display_csv_data.csv_data[index]}
                     >
@@ -225,69 +227,69 @@ class CsvWebComponent extends Component {
                             headerRenderer={this.headerRenderer}
                             dataKey="guid"
                             label="Guid"
-                            width={2 * TOTAL_WIDTH}
+                            width={2 * TABLE_TOTAL_WIDTH}
                         />
 
                         <Column
                             headerRenderer={this.headerRenderer}
                             dataKey="name"
                             label="Name"
-                            width={TOTAL_WIDTH / 2}
+                            width={TABLE_TOTAL_WIDTH / 2}
                         />
 
                         <Column
                             dataKey="first"
                             label="First"
-                            width={TOTAL_WIDTH / 2}
+                            width={TABLE_TOTAL_WIDTH / 2}
                         />
 
                         <Column
                             dataKey="last"
                             label="Last"
-                            width={TOTAL_WIDTH / 2}
+                            width={TABLE_TOTAL_WIDTH / 2}
                         />
 
                         <Column
                             dataKey="email"
                             label="Email"
-                            width={TOTAL_WIDTH}
+                            width={TABLE_TOTAL_WIDTH}
                         />
 
                         <Column
                             dataKey="value"
                             label="Value"
-                            width={TOTAL_WIDTH / 3}
+                            width={TABLE_TOTAL_WIDTH / 3}
                         />
 
                         <Column
                             dataKey="date"
                             label="Date"
-                            width={TOTAL_WIDTH}
+                            width={TABLE_TOTAL_WIDTH}
                         />
 
                         <Column
                             dataKey="phone"
                             label="Phone"
-                            width={TOTAL_WIDTH}
+                            width={TABLE_TOTAL_WIDTH}
                         />
 
 
                         <Column
                             dataKey="age"
                             label="Age"
-                            width={TOTAL_WIDTH / 5}
+                            width={TABLE_TOTAL_WIDTH / 5}
                         />
 
                         <Column
                             dataKey="state"
                             label="State"
-                            width={TOTAL_WIDTH / 4}
+                            width={TABLE_TOTAL_WIDTH / 4}
                         />
 
                         <Column
                             dataKey="street"
                             label="Street"
-                            width={TOTAL_WIDTH}
+                            width={TABLE_TOTAL_WIDTH}
                         />
 
                     </Table>
@@ -319,10 +321,5 @@ class CsvWebComponent extends Component {
 
 }
 
-const RenderRow = (props) => {
-    return props.keys.map((key, index) => {
-        return <td key={props.data[key]}>{props.data[key]}</td>
-    })
-};
 
 export default CsvWebComponent;

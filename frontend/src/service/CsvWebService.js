@@ -2,7 +2,7 @@ import axios from "axios";
 import {API_URL} from "../Constants";
 
 
-class UploadFilesService {
+class CsvWebService {
     upload(file, onUploadProgress) {
         let formData = new FormData();
         formData.append("file", file);
@@ -30,4 +30,4 @@ class UploadFilesService {
 
 }
 
-export default new UploadFilesService();
+export default new CsvWebService();
