@@ -5,6 +5,7 @@ import csv
 from flask import request, send_from_directory
 from flask_restful import Resource
 from dev.model.csv_web_model import CsvWebAppFileModel, CsvWebAppCsvModel
+from dev.stats.people_stats_manager import PeopleStatsManager
 from dev.util.helper.get_config import get_config_value
 
 
@@ -38,9 +39,10 @@ class CsvWebStatisticsService(Resource):
     @classmethod
     def get(cls, filename):
         print(filename)
-        model = CsvWebAppCsvModel.do_statistics(filename)
-        print(model)
-        return model
+        stats = PeopleStatsManager(filename)
+        data = stats.get_persons_per_year()
+        print(data)
+        return data
 
 
 class CsvWebDownloadService(Resource):

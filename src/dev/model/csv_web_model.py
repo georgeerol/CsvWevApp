@@ -2,6 +2,16 @@ from datetime import datetime
 from dev.db.db import db
 
 
+class PeopleInYear:
+
+    def __init__(self, year, person):
+        self.year = year
+        self.person = person
+
+    def json(self):
+        return {'year': self.year, 'person': self.person}
+
+
 class CsvWebAppFileModel(db.Model):
     __tablename__ = 'csv_web_app_file'
 
@@ -75,13 +85,30 @@ class CsvWebAppCsvModel(db.Model):
         db.session.commit()
 
     @classmethod
-    def do_statistics(cls, filename, ):
-        print(filename)
-        year = "2018"
+    def get_year_list(cls, filename):
+        unique_date_list = []
+
+        query = db.session.query(cls.date).filter(cls.filename_id == filename).distinct().all()
+        for dates in query:
+            dt = datetime.strptime(dates[0], '%m/%d/%Y')
+            if dt.year not in unique_date_list:
+                unique_date_list.append(dt.year)
+        unique_date_list.sort()
+        print(unique_date_list)
+        return unique_date_list
+
+    @classmethod
+    def get_people_sum(cls, filename, year):
         query = "select count(*) as people from (select count(*), date from {table}  where date like ?  and " \
                 "filename_id = ? group by date ) ".format(table=cls.__tablename__)
-        result = db.engine.execute(query, ("%{}".format(year), 'example_small.csv'))
-        return result.fetchone()
+
+        result = db.engine.execute(query, ("%{}".format(year), filename))
+        num_of_person = result.fetchone()
+        return num_of_person
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
 
     def delete_from_db(self):
         db.session.delete(self)
