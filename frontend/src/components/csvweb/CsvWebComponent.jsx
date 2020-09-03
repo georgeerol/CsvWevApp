@@ -13,7 +13,7 @@ class CsvWebComponent extends Component {
     constructor(props) {
         super(props);
         this.selectFile = this.selectFile.bind(this);
-        this.upload = this.upload.bind(this);
+        this.uploadClicked= this.uploadClicked.bind(this);
         this.displayClicked = this.displayClicked.bind(this);
         this.statsClicked = this.statsClicked.bind(this);
 
@@ -88,7 +88,7 @@ class CsvWebComponent extends Component {
     }
 
 
-    upload() {
+    uploadClicked() {
         let currentFile = this.state.selectedFiles[0];
         this.setState({
             progress: 0,
@@ -148,7 +148,7 @@ class CsvWebComponent extends Component {
                 <button
                     className="btn btn-success"
                     disabled={!selectedFiles}
-                    onClick={this.upload}
+                    onClick={this.uploadClicked}
                 >Upload
                 </button>
 
