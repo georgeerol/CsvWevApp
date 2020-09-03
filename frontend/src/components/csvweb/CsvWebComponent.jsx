@@ -28,7 +28,7 @@ class CsvWebComponent extends Component {
             hasMore: true,
             progress: 0,
             message: "",
-            fileInfos: [],
+            fileData: [],
 
         };
     }
@@ -36,7 +36,7 @@ class CsvWebComponent extends Component {
     componentDidMount() {
         CsvWebService.getFiles().then((response) => {
             this.setState({
-                fileInfos: response.data,
+                fileData: response.data,
             });
         });
     }
@@ -109,7 +109,7 @@ class CsvWebComponent extends Component {
             })
             .then((files) => {
                 this.setState({
-                    fileInfos: files.data,
+                    fileData: files.data,
                 });
             })
             .catch(() => {
@@ -132,7 +132,7 @@ class CsvWebComponent extends Component {
             currentFile,
             progress,
             message,
-            fileInfos,
+            fileData,
         } = this.state;
 
 
@@ -160,8 +160,8 @@ class CsvWebComponent extends Component {
                     <div className="card-header">List of CSVs</div>
                     <table className="table">
                         <tbody>
-                        {fileInfos &&
-                        fileInfos.map((file, index) => (
+                        {fileData &&
+                        fileData.map((file, index) => (
                             <tr key={index}>
                                 <td><a href={file.url}>{file.name}</a></td>
                                 <td>
@@ -295,10 +295,9 @@ class CsvWebComponent extends Component {
                     </Table>
                     : null
                 }
-
-
-
-
+                <br></br>
+                <br></br>
+                <br></br>
 
                 {currentFile && (
                     <div className="progress">
