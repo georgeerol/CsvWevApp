@@ -8,7 +8,9 @@ const TABLE_HEIGHT = 300;
 const HEADER_HEIGHT = 20;
 const ROW_HEIGHT = 30;
 
-
+/**
+ * This class is the CSV Web Application Component
+ */
 class CsvWebComponent extends Component {
     constructor(props) {
         super(props);
@@ -41,13 +43,19 @@ class CsvWebComponent extends Component {
         });
     }
 
+    /**
+     * Toggle on or off the provided csv file on the web page
+     *
+     */
     handleDisplayShow = () => {
         const {isDisplayActive} = this.state;
         this.setState({
             isDisplayActive: !isDisplayActive,
         })
     };
-
+    /**
+     * Toggle on or off the provided stats on the web page
+     */
     handleStatsDisplayShow = () => {
         const {isStatsDisplayActive} = this.state;
         this.setState({
@@ -55,9 +63,13 @@ class CsvWebComponent extends Component {
         })
     };
 
+    /**
+     *  Fetch stats data and display them when the Data Statistics button is pressed
+     * @param filename - the filename of stats data
+     */
     statsClicked(filename) {
         console.log(filename);
-        CsvWebService.stats(filename).then(response => {
+        CsvWebService.statsCsvFile(filename).then(response => {
             this.setState({stats_data: response.data});
             console.log(this.state.stats_data)
         }).then(() => {
@@ -68,9 +80,13 @@ class CsvWebComponent extends Component {
 
     }
 
+    /**
+     * Fetch csv data and display them when the Display button is pressed
+     * @param filename - the csv filename
+     */
     displayClicked(filename) {
         console.log(filename);
-        CsvWebService.displayFile(filename).then(response => {
+        CsvWebService.displayCsvFile(filename).then(response => {
             this.setState({display_csv_data: response.data});
 
         }).then(() => {
@@ -178,7 +194,7 @@ class CsvWebComponent extends Component {
 
                     {this.state.isStatsDisplayActive ?
                         <Table
-                            width={TABLE_TOTAL_WIDTH/8}
+                            width={TABLE_TOTAL_WIDTH / 8}
                             height={TABLE_HEIGHT}
                             headerHeight={HEADER_HEIGHT}
                             rowHeight={ROW_HEIGHT}
