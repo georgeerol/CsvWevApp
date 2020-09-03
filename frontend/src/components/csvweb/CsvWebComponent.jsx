@@ -14,7 +14,7 @@ const ROW_HEIGHT = 30;
 class CsvWebComponent extends Component {
     constructor(props) {
         super(props);
-        this.selectFile = this.selectFile.bind(this);
+        this.chooseCsvFile = this.chooseCsvFile.bind(this);
         this.uploadClicked = this.uploadClicked.bind(this);
         this.displayClicked = this.displayClicked.bind(this);
         this.statsClicked = this.statsClicked.bind(this);
@@ -97,7 +97,11 @@ class CsvWebComponent extends Component {
 
     }
 
-    selectFile(event) {
+    /**
+     * Get the chosen csv file from the <type= 'file'> element.
+     * @param event
+     */
+    chooseCsvFile(event) {
         this.setState({
             selectedFiles: event.target.files,
         });
@@ -105,6 +109,7 @@ class CsvWebComponent extends Component {
 
 
     uploadClicked() {
+        // accessing the current csv file as the first data
         let currentFile = this.state.selectedFiles[0];
         this.setState({
             progress: 0,
@@ -158,7 +163,7 @@ class CsvWebComponent extends Component {
                 <h1> Csv Web Application </h1>
                 <div className="container">
                     <label className="btn btn-default">
-                        <input type="file" onChange={this.selectFile}/>
+                        <input type="file" onChange={this.chooseCsvFile}/>
                     </label>
 
                     <button className="btn btn-success" disabled={!selectedFiles} onClick={this.uploadClicked}>Upload
