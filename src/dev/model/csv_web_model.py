@@ -48,9 +48,9 @@ class CsvWebAppFileModel(db.Model):
 
 class CsvWebAppCsvModel(db.Model):
     __tablename__ = 'csv_web_app_csv'
-
-    guid = db.Column(db.String(), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     filename_id = db.Column(db.String, db.ForeignKey('csv_web_app_file.filename'))
+    guid = db.Column(db.String())
     name = db.Column(db.String)
     first = db.Column(db.String)
     last = db.Column(db.String)
