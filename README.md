@@ -1,5 +1,5 @@
 # CSV Web Application
-A full stack web application that handle CSV data
+A Full Stack Web Application that handle CSV data
 
 ## Technology
 ### Front End
@@ -11,7 +11,7 @@ A full stack web application that handle CSV data
 ### Back End
 - Flask-Restful - Object Oriented Programming(OOP) Backend REST API.
 - Flask-SQLAlchemy - Object-Relational Mappers(ORM), high-level abstraction that transfer database data into objects.
-- SQLite or PostgreSQL - Setup to work with the Relational Database SQLite or PostgreSQL  
+- SQLite or PostgreSQL - Setup to work with the Relational Database SQLite or PostgreSQL.  
 
 
 # Requirements

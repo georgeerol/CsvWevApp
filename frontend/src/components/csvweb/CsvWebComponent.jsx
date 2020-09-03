@@ -21,13 +21,12 @@ class CsvWebComponent extends Component {
 
 
         this.state = {
-            selectedFiles: undefined,
-            currentFile: undefined,
-            display_csv_data: undefined,
+            chosenCsvFiles: undefined,
+            currentCsvFile: undefined,
+            displayCsvData: undefined,
+            statsCsvData: undefined,
             isDisplayActive: false,
-            stats_data: undefined,
             isStatsDisplayActive: false,
-            hasMore: true,
             progress: 0,
             message: "",
             fileData: [],
@@ -70,8 +69,8 @@ class CsvWebComponent extends Component {
     statsClicked(filename) {
         console.log(filename);
         CsvWebService.statsCsvFile(filename).then(response => {
-            this.setState({stats_data: response.data});
-            console.log(this.state.stats_data)
+            this.setState({statsCsvData: response.data});
+            console.log(this.state.statsCsvData)
         }).then(() => {
             this.handleStatsDisplayShow();
         }).catch(() => {
@@ -87,7 +86,7 @@ class CsvWebComponent extends Component {
     displayClicked(filename) {
         console.log(filename);
         CsvWebService.displayCsvFile(filename).then(response => {
-            this.setState({display_csv_data: response.data});
+            this.setState({displayCsvData: response.data});
 
         }).then(() => {
             this.handleDisplayShow();
@@ -103,17 +102,19 @@ class CsvWebComponent extends Component {
      */
     chooseCsvFile(event) {
         this.setState({
-            selectedFiles: event.target.files,
+            chosenCsvFiles: event.target.files,
         });
     }
 
-
+    /**
+     *  Upload the chosen file when the Upload button is clicked
+     */
     uploadClicked() {
         // accessing the current csv file as the first data
-        let currentFile = this.state.selectedFiles[0];
+        let currentFile = this.state.chosenCsvFiles[0];
         this.setState({
             progress: 0,
-            currentFile: currentFile,
+            currentCsvFile: currentFile,
         });
 
         CsvWebService.uploadCsvFile(currentFile, (event) => {
@@ -137,20 +138,20 @@ class CsvWebComponent extends Component {
                 this.setState({
                     progress: 0,
                     message: "Unable to upload the file! Make sure it's the right csv file.",
-                    currentFile: undefined,
+                    currentCsvFile: undefined,
                 });
             });
 
         this.setState({
-            selectedFiles: undefined,
+            chosenCsvFiles: undefined,
         });
     }
 
 
     render() {
         const {
-            selectedFiles,
-            currentFile,
+            chosenCsvFiles,
+            currentCsvFile,
             progress,
             message,
             fileData,
@@ -166,7 +167,7 @@ class CsvWebComponent extends Component {
                         <input type="file" onChange={this.chooseCsvFile}/>
                     </label>
 
-                    <button className="btn btn-success" disabled={!selectedFiles} onClick={this.uploadClicked}>Upload
+                    <button className="btn btn-success" disabled={!chosenCsvFiles} onClick={this.uploadClicked}>Upload
                     </button>
 
                     <div className="alert alert-light" role="alert">
@@ -203,8 +204,8 @@ class CsvWebComponent extends Component {
                             height={TABLE_HEIGHT}
                             headerHeight={HEADER_HEIGHT}
                             rowHeight={ROW_HEIGHT}
-                            rowCount={this.state.stats_data.persons_per_year.length}
-                            rowGetter={({index}) => this.state.stats_data.persons_per_year[index]}
+                            rowCount={this.state.statsCsvData.persons_per_year.length}
+                            rowGetter={({index}) => this.state.statsCsvData.persons_per_year[index]}
                         >
 
                             <Column
@@ -236,8 +237,8 @@ class CsvWebComponent extends Component {
                         height={TABLE_HEIGHT}
                         headerHeight={HEADER_HEIGHT}
                         rowHeight={ROW_HEIGHT}
-                        rowCount={this.state.display_csv_data.csv_data.length}
-                        rowGetter={({index}) => this.state.display_csv_data.csv_data[index]}
+                        rowCount={this.state.displayCsvData.csv_data.length}
+                        rowGetter={({index}) => this.state.displayCsvData.csv_data[index]}
                     >
                         <Column
                             headerRenderer={this.headerRenderer}
@@ -315,7 +316,7 @@ class CsvWebComponent extends Component {
                 <br></br>
                 <br></br>
 
-                {currentFile && (
+                {currentCsvFile && (
                     <div className="progress">
                         <div
                             className="progress-bar progress-bar-info progress-bar-striped"
