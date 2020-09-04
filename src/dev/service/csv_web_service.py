@@ -1,14 +1,12 @@
-import logging
-import os
-import io
 import csv
-from flask import request, send_from_directory
+import io
+from flask import request
 from flask_restful import Resource
-from dev.model.csv_web_model import CsvWebAppFileModel, CsvWebAppCsvModel
-from dev.stats.people_stats_manager import PeopleStatsManager
-from dev.util.helper.get_config import get_config_value
-from dev.mgr.upload_mgr import UploadManager
 from dev.mgr.download_mgr import DownloadManager
+from dev.mgr.stats_manager import PeopleStatsManager
+from dev.mgr.upload_mgr import UploadManager
+from dev.mgr.display_mgr import DisplayManager
+from dev.model.csv_web_model import CsvWebAppFileModel, CsvWebAppCsvModel
 
 
 class Online(Resource):
@@ -32,19 +30,15 @@ class CsvWebGetFilesService(Resource):
 class CsvWebDisplayService(Resource):
     @classmethod
     def get(cls, filename):
-        model = CsvWebAppFileModel.find_by_filename(filename)
-        dict_data = model.json()
-        return dict_data
+        display_mgr =DisplayManager(filename)
+        return display_mgr.fetch_csv_data()
 
 
 class CsvWebStatisticsService(Resource):
     @classmethod
     def get(cls, filename):
-        print(filename)
         stats = PeopleStatsManager(filename)
-        data = stats.get_persons_per_year()
-        print(data)
-        return data
+        return stats.get_persons_per_year()
 
 
 class CsvWebDownloadService(Resource):
@@ -77,5 +71,4 @@ class CsvWebUploadService(Resource):
                                          row['street'])
             data_list.append(csv_data)
         upload_mgr = UploadManager(filename, content_type, data_list)
-        upload_mgr.save_to_db()
-        return upload_mgr.get_response_message()
+        return upload_mgr.save_to_db()

@@ -11,7 +11,6 @@ class DownloadManager:
         self.__filename = filename
         self.csv_columns = []
         self.dict_data = {}
-        self.__response_message = {}, 500
 
     def process_file(self):
         self.__find_file()
@@ -26,8 +25,7 @@ class DownloadManager:
                 for data in self.dict_data['csv_data']:
                     writer.writerow(data)
         except IOError as e:
-            self.__response_message = {'message': str(e)}, 500
-            return self.__response_message
+            return {'message': str(e)}, 500
         return send_from_directory('../../temp', self.__filename, as_attachment=True)
 
     def __find_file(self):
