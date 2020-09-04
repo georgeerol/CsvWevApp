@@ -7,6 +7,7 @@ from flask_restful import Resource
 from dev.model.csv_web_model import CsvWebAppFileModel, CsvWebAppCsvModel
 from dev.stats.people_stats_manager import PeopleStatsManager
 from dev.util.helper.get_config import get_config_value
+from dev.mgr.upload_mgr import UploadManager
 
 
 class Online(Resource):
@@ -82,13 +83,13 @@ class CsvWebUploadService(Resource):
         data_list = []
 
         for row in reader:
-            # guid, name, first, last, email, value, date, phone, age, state, street
+            # if empty replace with blank
+            if not row['state']:
+                row['state'] = 'BLANK'
             csv_data = CsvWebAppCsvModel(row['guid'], row['name'], row['first'], row['last'], row['email'],
                                          row['value'], row['date'], row['phone'], row['age'], row['state'],
                                          row['street'])
             data_list.append(csv_data)
-        # csv_data_dict = {'csv_data': data_list}
-        model = CsvWebAppFileModel(filename, content_type, data_list)
-        model.save_to_db()
-        dict_message = {'message': 'Update the file successfully: {}'.format(filename)}
-        return dict_message
+        upload_mgr = UploadManager(filename, content_type, data_list)
+        upload_mgr.save_to_db()
+        return upload_mgr.get_response_message()
