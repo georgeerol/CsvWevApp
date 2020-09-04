@@ -8,6 +8,7 @@ from dev.model.csv_web_model import CsvWebAppFileModel, CsvWebAppCsvModel
 from dev.stats.people_stats_manager import PeopleStatsManager
 from dev.util.helper.get_config import get_config_value
 from dev.mgr.upload_mgr import UploadManager
+from dev.mgr.download_mgr import DownloadManager
 
 
 class Online(Resource):
@@ -49,23 +50,8 @@ class CsvWebStatisticsService(Resource):
 class CsvWebDownloadService(Resource):
     @classmethod
     def get(cls, filename):
-        model = CsvWebAppFileModel.find_by_filename(filename)
-        dict_data = model.json()
-        csv_columns = dict_data['csv_data'][0].keys()
-        path = get_config_value('temp_download_folder')
-        if not os.path.exists(path):
-            os.makedirs(path)
-        csv_file = filename
-        try:
-            with open(os.path.join(path, csv_file), 'w+') as csvfile:
-                writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
-                writer.writeheader()
-                for data in dict_data['csv_data']:
-                    writer.writerow(data)
-        except IOError:
-            print("I/O error")
-        # send the buffer as a regular file
-        return send_from_directory('../../temp', filename, as_attachment=True)
+        download_mgr = DownloadManager(filename)
+        return download_mgr.process_file()
 
 
 class CsvWebUploadService(Resource):
@@ -83,7 +69,7 @@ class CsvWebUploadService(Resource):
         data_list = []
 
         for row in reader:
-            # if empty replace with blank
+            # if empty replace with BLANK
             if not row['state']:
                 row['state'] = 'BLANK'
             csv_data = CsvWebAppCsvModel(row['guid'], row['name'], row['first'], row['last'], row['email'],
