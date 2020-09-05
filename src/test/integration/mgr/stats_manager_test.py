@@ -1,13 +1,9 @@
 from test.base_test import BaseTest
-from dev.stats.people_stats_manager import PeopleStatsManager
+from dev.mgr.stats_manager import PeopleStatsManager
 from dev.model.csv_web_model import CsvWebAppCsvModel
 
 
 class PeopleStatsManagerTest(BaseTest):
-    def test_create_manager(self):
-        filename = 'example.csv'
-        p = PeopleStatsManager(filename)
-        self.assertEqual(filename, p.filename)
 
     def test_get_persons_per_year(self):
         with self.app_context():
@@ -29,4 +25,4 @@ class PeopleStatsManagerTest(BaseTest):
             stats = PeopleStatsManager(filename_id)
             data = stats.get_persons_per_year()
             self.assertEqual(filename_id, data['filename'])
-            self.assertEqual({'person': 1, 'year': 2018}, data['stats_data'][0])
+            self.assertEqual({'person': 1, 'year': 2018}, data['persons_per_year'][0])
