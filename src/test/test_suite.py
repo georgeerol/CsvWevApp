@@ -15,7 +15,7 @@ test_modules = [
         'paths': paths,
 
         'unit': [],
-        'integration': [],
+        'integration': ['integration.mgr.stats_manager_test'],
         'system': []
 
     }
