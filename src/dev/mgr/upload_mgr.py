@@ -25,7 +25,6 @@ class UploadManager:
         self.__content_type = self.__file.content_type
         stream = io.StringIO(self.__file.stream.read().decode("UTF8"), newline=None)
         reader = csv.DictReader(stream)
-        data_list = []
 
         for row in reader:
             # if empty replace with BLANK
@@ -34,4 +33,4 @@ class UploadManager:
             csv_data = CsvWebAppCsvModel(row['guid'], row['name'], row['first'], row['last'], row['email'],
                                          row['value'], row['date'], row['phone'], row['age'], row['state'],
                                          row['street'])
-            data_list.append(csv_data)
+            self.__data_list.append(csv_data)

@@ -1,13 +1,10 @@
-import csv
-import io
-from flask import request
+from flask import request, send_from_directory
 from flask_restful import Resource
 from dev.mgr.display_mgr import DisplayManager
-from dev.mgr.download_mgr import DownloadManager
+from dev.mgr.download_mgr import DownloadCsvFileManager
 from dev.mgr.get_files_mgr import GetCsvFilesManager
 from dev.mgr.stats_manager import PeopleStatsManager
 from dev.mgr.upload_mgr import UploadManager
-from dev.model.csv_web_model import CsvWebAppCsvModel
 
 
 class Online(Resource):
@@ -20,7 +17,7 @@ class CsvWebGetFilesService(Resource):
 
     @classmethod
     def get(cls):
-        return GetCsvFilesManager().fetch_csv_data()
+        return GetCsvFilesManager().get_csv_files()
 
 
 class CsvWebDisplayService(Resource):
@@ -38,7 +35,11 @@ class CsvWebStatisticsService(Resource):
 class CsvWebDownloadService(Resource):
     @classmethod
     def get(cls, filename):
-        return DownloadManager(filename).process_file()
+        msg = DownloadCsvFileManager(filename).prepare_csv_file()
+        if msg['message'] == 'Done':
+            return send_from_directory('../../temp', filename, as_attachment=True)
+        else:
+            return msg
 
 
 class CsvWebUploadService(Resource):
