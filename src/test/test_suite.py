@@ -14,7 +14,7 @@ test_modules = [
     {
         'paths': paths,
 
-        'unit': [],
+        'unit': ['unit.util.yaml_test'],
         'integration': ['integration.mgr.display_mgr_test',
                         'integration.mgr.download_mgr_test',
                         'integration.mgr.get_files_mgr_test',
