@@ -8,7 +8,7 @@ class UploadFileManagerTest(BaseTest):
 
     def test_process_file(self):
         with self.app_context():
-            filename = 'example_small.csv'
+            filename = 'test.csv'
             test_file = get_config_value('temp_download_folder') + '/' + filename
 
             file_to_Upload = FileStorage(stream=open(test_file, "rb"), filename=filename, content_type='text/csv')
