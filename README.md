@@ -30,7 +30,7 @@ To upload a csv file go to csvWeb tab and click on choose File then Upload butto
 ---
 **NOTE**
 
-When uploading a big csv file wait until the message says Upload *yourFilename* Successfully
+*When uploading a big csv file wait until the message says Upload {yourFilename} Successfully*
 
 ---
 
@@ -42,9 +42,30 @@ After a file is uploaded, a list of uploaded csv files is shown below the List o
 ### Download the previously uploaded CSV file 
 To download any csv files click on the filename
 ![DownloadCSV](./misc/DownloadCSV.png)
-**When downloading a big csv file, wait few seconds. The file takes sometime  to be prepared**
+
+---
+**NOTE**
+
+*When downloading a big csv file, wait a few seconds. The file takes sometime to be prepared.*
+
+---
+
 
 ### Display the CSV content showing at least all column headers and content
+To display a csv content click on the Display button. Scroll down to see the rest of the file
+![DisplayCSV](./misc/DisplayCSV.png)
+
+---
+**NOTE**
+
+*When displaying a big csv file, wait a few seconds. The file takes sometime to render on the page.*
+
+---
+
+### Provide statistics on the number of people with the same year in the “date” field.
+To display the stats on the number of people with the same year click on the Date Statistics button. 
+Scroll down to see the rest of the file.
+![DisplayCSVStats](./misc/DisplayCsvStats.png)
 
 
 # CsvWepApp Backend
