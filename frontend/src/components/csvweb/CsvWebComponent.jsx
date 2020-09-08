@@ -74,7 +74,9 @@ class CsvWebComponent extends Component {
         }).then(() => {
             this.handleStatsDisplayShow();
         }).catch(() => {
-
+            this.setState({
+                message: "Unable to display stats data"
+            });
         });
 
     }
@@ -91,7 +93,9 @@ class CsvWebComponent extends Component {
         }).then(() => {
             this.handleDisplayShow();
         }).catch(() => {
-
+            this.setState({
+                message: "Unable to display the csv data"
+            });
         });
 
     }
