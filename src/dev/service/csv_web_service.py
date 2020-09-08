@@ -5,12 +5,13 @@ from dev.mgr.download_mgr import DownloadCsvManager
 from dev.mgr.get_files_mgr import GetCsvFilesManager
 from dev.mgr.stats_manager import PeopleStatsManager
 from dev.mgr.upload_mgr import UploadCsvManager
+from dev.util.helper.get_config import get_config_value
 
 
 class Online(Resource):
     @classmethod
     def get(cls):
-        return {'release': '1.0', 'Online': 'Yes'}
+        return {'release': get_config_value('release_version'), 'Online': 'Yes'}
 
 
 class CsvWebGetFilesService(Resource):

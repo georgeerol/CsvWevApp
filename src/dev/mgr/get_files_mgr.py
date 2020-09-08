@@ -1,4 +1,5 @@
 import os
+import logging
 from dev.model.csv_web_model import CsvWebAppFileModel
 
 
@@ -7,6 +8,7 @@ class GetCsvFilesManager:
         self.__csv_files = []
 
     def get_csv_files(self):
+        logging.info("Getting csv files")
         try:
             model = CsvWebAppFileModel.find_all()
             for data in model:
@@ -17,4 +19,6 @@ class GetCsvFilesManager:
                 self.__csv_files.append(var)
             return self.__csv_files
         except Exception as e:
-            return {'message': " Error fetching csv files" + str(e)}, 500
+            error_msg = " Error fetching csv files" + str(e)
+            logging.error(error_msg)
+            return {'message': error_msg}, 500

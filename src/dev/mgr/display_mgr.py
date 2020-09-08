@@ -1,3 +1,4 @@
+import logging
 from dev.model.csv_web_model import CsvWebAppFileModel
 
 
@@ -7,10 +8,15 @@ class DisplayCsvManager:
         self.__filename = filename
 
     def fetch_csv_data(self):
+        logging.info("Fetching display csv data ")
         try:
             model = CsvWebAppFileModel.find_by_filename(self.__filename)
             dict_data = model.json()
-            dict_data['message'] = 'Display {file} Successfully'.format(file=self.__filename)
+            msg = 'Display {file} Successfully'.format(file=self.__filename)
+            logging.info(msg)
+            dict_data['message'] = msg
             return dict_data
         except Exception as e:
-            return {'message': " Error displaying csv {file}.".format(file=self.__filename) + str(e)}, 500
+            err_msg = " Error displaying csv {file}.".format(file=self.__filename) + str(e)
+            logging.error(err_msg)
+            return {'message': err_msg}, 500

@@ -1,5 +1,6 @@
 import csv
 import io
+import logging
 from dev.model.csv_web_model import CsvWebAppFileModel, CsvWebAppCsvModel
 
 
@@ -12,13 +13,18 @@ class UploadCsvManager:
         self.__data_list = []
 
     def save_to_db(self):
+        logging.info("Saving the csv file:{} to the database".format(self.__filename))
         self.__get_data_from_file()
         try:
             model = CsvWebAppFileModel(self.__filename, self.__content_type, self.__data_list)
             model.save_to_db()
-            return {'message': 'Upload {file} Successfully'.format(file=self.__filename)}, 201
+            msg = 'Upload {file} Successfully'.format(file=self.__filename)
+            logging.info(msg)
+            return {'message': msg}, 201
         except Exception as e:
-            return {'message': " Error  with {file}.".format(file=self.__filename) + str(e)}, 500
+            error_msg = " Error  with {file}.".format(file=self.__filename) + str(e)
+            logging.error(error_msg)
+            return {'message': error_msg}, 500
 
     def __get_data_from_file(self):
         self.__filename = self.__file.filename
