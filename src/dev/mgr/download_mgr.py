@@ -4,7 +4,7 @@ from dev.model.csv_web_model import CsvWebAppFileModel
 from dev.util.helper.get_config import get_config_value
 
 
-class DownloadCsvFileManager:
+class DownloadCsvManager:
 
     def __init__(self, filename):
         self.__filename = filename

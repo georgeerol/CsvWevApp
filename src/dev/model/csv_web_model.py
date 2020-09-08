@@ -2,16 +2,6 @@ from datetime import datetime
 from dev.db.db import db
 
 
-class PeopleInYear:
-
-    def __init__(self, year, person):
-        self.year = year
-        self.person = person
-
-    def json(self):
-        return {'year': self.year, 'person': self.person}
-
-
 class CsvWebAppFileModel(db.Model):
     __tablename__ = 'csv_web_app_file'
 
@@ -94,7 +84,6 @@ class CsvWebAppCsvModel(db.Model):
             if dt.year not in unique_date_list:
                 unique_date_list.append(dt.year)
         unique_date_list.sort()
-        print(unique_date_list)
         return unique_date_list
 
     @classmethod

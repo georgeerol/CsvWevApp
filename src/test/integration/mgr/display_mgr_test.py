@@ -1,5 +1,5 @@
 from test.base_test import BaseTest
-from dev.mgr.display_mgr import DisplayManager
+from dev.mgr.display_mgr import DisplayCsvManager
 from dev.model.csv_web_model import CsvWebAppCsvModel
 from dev.model.csv_web_model import CsvWebAppFileModel
 
@@ -37,7 +37,7 @@ class DisplayManagerTest(BaseTest):
             csv_model = CsvWebAppCsvModel(guid, name, first, last, email, value, date, phone, age, state, street)
             file_model = CsvWebAppFileModel(filename, content_type, [csv_model])
             file_model.save_to_db()
-            display_mgr = DisplayManager(filename)
+            display_mgr = DisplayCsvManager(filename)
             data = display_mgr.fetch_csv_data()
             actual_data = data['csv_data'][0]
             self.assertEqual(filename, data['filename'])

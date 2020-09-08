@@ -1,10 +1,10 @@
 from flask import request, send_from_directory
 from flask_restful import Resource
-from dev.mgr.display_mgr import DisplayManager
-from dev.mgr.download_mgr import DownloadCsvFileManager
+from dev.mgr.display_mgr import DisplayCsvManager
+from dev.mgr.download_mgr import DownloadCsvManager
 from dev.mgr.get_files_mgr import GetCsvFilesManager
 from dev.mgr.stats_manager import PeopleStatsManager
-from dev.mgr.upload_mgr import UploadManager
+from dev.mgr.upload_mgr import UploadCsvManager
 
 
 class Online(Resource):
@@ -23,7 +23,7 @@ class CsvWebGetFilesService(Resource):
 class CsvWebDisplayService(Resource):
     @classmethod
     def get(cls, filename):
-        return DisplayManager(filename).fetch_csv_data()
+        return DisplayCsvManager(filename).fetch_csv_data()
 
 
 class CsvWebStatisticsService(Resource):
@@ -35,7 +35,7 @@ class CsvWebStatisticsService(Resource):
 class CsvWebDownloadService(Resource):
     @classmethod
     def get(cls, filename):
-        msg = DownloadCsvFileManager(filename).prepare_csv_file()
+        msg = DownloadCsvManager(filename).prepare_csv_file()
         if msg['message'] == 'Done':
             return send_from_directory('../../temp', filename, as_attachment=True)
         else:
@@ -50,4 +50,4 @@ class CsvWebUploadService(Resource):
     @classmethod
     def post(cls):
         file = request.files['file']
-        return UploadManager(file).save_to_db()
+        return UploadCsvManager(file).save_to_db()

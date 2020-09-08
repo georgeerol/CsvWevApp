@@ -23,8 +23,8 @@ class PeopleStatsManager:
 class PeopleInYear:
 
     def __init__(self, year, person):
-        self.year = year
-        self.person = person
+        self.__year = year
+        self.__person = person
 
     def json(self):
-        return {'year': self.year, 'person': self.person}
+        return {'year': self.__year, 'person': self.__person}

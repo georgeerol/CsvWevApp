@@ -2,13 +2,13 @@
 A Full Stack Web Application that handle CSV data
 
 ## Technology
-### Front End
+### Frontend
 - React - Front End View Framework.
 - React Virtualized - Front End library to render large lists and tabular data.
 - Axios - Front End Interface With a Backend REST API.
 - BootStrap - Styling Pages.
 
-### Back End
+### Backend
 - Flask-Restful - Object Oriented Programming(OOP) Backend REST API.
 - Flask-SQLAlchemy - Object-Relational Mappers(ORM), high-level abstraction that transfer database data into objects.
 - SQLite or PostgreSQL - Setup to work with the Relational Database SQLite or PostgreSQL.  
@@ -22,8 +22,8 @@ The application have the ability to:
 - [x] Display the CSV content showing at least all column headers and content
 - [x] Provide statistics on the number of people with the same year in the “date” field.
 
-
-# Backend Development Structure
+# CsvWepApp Backend
+## Backend Development Structure
 ##### The organization of the project's folders and files is shown below:
 
 ```sh
@@ -61,7 +61,6 @@ src
 │   └── test.csv
 ```
 
-
 - `app.py` : This file initializes and configure the Flask application and set up all API services. This file is the entry point to the CsvWebApp
 - `config.config.yaml` : This file contains Various requirement are defined in the `config.yaml`. These include:
     - App Release Version
@@ -83,7 +82,15 @@ src
 - `setup.app_setup.py`: This file setup config information base on the `config/config.yaml`.
 - `dev.util`: This folder contains all the utilities functions that the CsvWebAbb needs to run.
 - `dev.temp`: This folder contains all the prepare file that are set to be downloaded from the Download Service.
-# Backend Test Structure
+## Backend Class  Diagram
+![ClassDiagram](./misc/CsvWepAppClassDiagram.png)
+
+### Services
+
+### Managers
+
+### Models
+## Backend Test Structure
 [write here]
 ```sh
 test
