@@ -22,10 +22,8 @@ The application have the ability to:
 - [x] Display the CSV content showing at least all column headers and content
 - [x] Provide statistics on the number of people with the same year in the “date” field.
 
-### Upload a CSV file 
-
+### Upload a CSV file  
 To upload a csv file go to csvWeb tab and click on choose File then Upload button
-
 
 ![UploadACsv](./misc/UploadACsv.png)
 
