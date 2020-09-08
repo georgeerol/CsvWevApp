@@ -107,14 +107,14 @@ src
 │   └── test.csv
 ```
 
-- `app.py` : This file initializes and configure the Flask application and set up all API services. This file is the entry point to the CsvWebApp
-- `config.config.yaml` : This file contains Various requirement are defined in the `config.yaml`. These include:
+- `app.py` : This file initializes and configure the Flask application and set up all API services. It is the entry point to the CsvWebApp
+- `config.config.yaml` : This file contains various requirement which are defined in the `config.yaml`. These include:
     - App Release Version
     - App URI Path
     - Temp Download Folder
     - Logging information
-- `dev.db.db.py`:  This file create this project database Python object, so that other files can import it. All other files import the database variable from this file.
-            These reason for creating a separate files containing just this is precisely so it's easier to import and to avoid python's circular imports
+- `dev.db.db.py`:  This file creates this project database python object, so that other files can import it. All other files import the database variable from it.
+            The reason for creating a separate file containing just this is precisely so it's easier to import and to avoid python's circular imports.
 - `dev.env`: This folder contains all the environment needed to run the CsvWebApp based on the `.env` file. The behavior template method pattern is used to choose different environment 
              such as running the app with a sqlite database(included in this project) or postgres(needs to be install separately)
 
@@ -123,10 +123,10 @@ src
 - `dev.model.csv_web_model`: This file contains definition of what data our application deals with, and ways to interact with that data. 
                              It contains the `CsvWebAppFileModel` and  CsvWebAppCsvModel classes. 
                              A one-to-many relationship where a file(`csv_web_app_file` table) is associate with one or more csv data(`csv_web_app_csv` table).
-- `dev.service.csv_web_service` : This files define how clients interact with the CsvWebAPP REST API. 
+- `dev.service.csv_web_service` : This file defines how clients interact with the CsvWebAPP REST API. 
                                   It defines the endpoints where clients send requests, such as upload, download, display, get stats and get files. 
 - `setup.app_setup.py`: This file setup config information base on the `config/config.yaml`.
-- `dev.util`: This folder contains all the utilities functions that the CsvWebAbb needs to run.
+- `dev.util`: This folder contains all the utilities that the CsvWebAbb needs to run.
 - `dev.temp`: This folder contains all the prepare file that are set to be downloaded from the Download Service.
 ## Backend Class  Diagram
 ![ClassDiagram](./misc/CsvWepAppClassDiagram.png)
