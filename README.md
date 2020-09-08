@@ -235,7 +235,7 @@ receive a request.
 ### Frontend
 To run the frontend, open a new terminal, in the frontend directory, run these commands below in a terminal:
 ```sh
-$ cd src
+$ cd frontend
 $ npm install
 $ npm start
 ```
