@@ -233,7 +233,7 @@ The ./run.sh will run the app.py with the information provided in `.env` . A sql
 receive a request. 
 
 ### Frontend
-To run the frontend, open a new terminal, in the main directory, run these commands below in a terminal:
+To run the frontend, open a new terminal, in the frontend directory, run these commands below in a terminal:
 ```sh
 $ cd src
 $ npm install
