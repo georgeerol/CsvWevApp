@@ -20,7 +20,10 @@ test_modules = [
                         'integration.mgr.get_files_mgr_test',
                         'integration.mgr.stats_mgr_test',
                         'integration.mgr.upload_mgr_test'],
-        'system': []
+        'system': ['system.service.csv_web_display_service_test',
+                   'system.service.csv_web_get_files_service_test',
+                   'system.service.csv_web_stats_service_test',
+                   'system.service.csv_web_upload_service_test']
 
     }
 ]
