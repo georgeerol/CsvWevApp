@@ -267,11 +267,12 @@ Open the app via Pycharm and set the project interpreter and structure located u
     * Backend: Spring Boot
     * Frontend: Thymeleaf
     * github: https://github.com/georgeerol/ProjectManagementApp
-    
+![PPM](./misc/PPM.png)    
 * TodoApp
     * Backend: Spring Boot
     * Frontend: React
     * github: https: https://github.com/georgeerol/ToDoApp
+![ToDoPage](./misc/ToDoPage.png)
 
 
 
