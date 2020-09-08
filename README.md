@@ -217,7 +217,8 @@ $ coverage html
 `coverage html` will create an interactive html file that you can open in a web browser. This html file is stored
 in the path `src/htmlcov/index.html`. Find this in your file explorer and double-click it to open it in your 
 default browser. You can use this file to see exactly which lines of code have been run, and which have not.
-
+### Coverage Report
+![CoverageReport](./misc/CoverageReport.png)
 # Running the APP via the terminal
 
 ### Backend
@@ -259,6 +260,7 @@ Open the app via Pycharm and set the project interpreter and structure located u
 * Add more unit,integration and system tests.
 * Fix footer when big data is displayed.
 * Frontend to accept negative request from backend.
+* Setup DevOps with Travis.
 
 # Similar projects
 * ProjectManagementApp
