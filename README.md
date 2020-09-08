@@ -2,13 +2,13 @@
 A Full Stack Web Application that handle CSV data
 
 ## Technology
-### Front End
+### Frontend
 - React - Front End View Framework.
 - React Virtualized - Front End library to render large lists and tabular data.
 - Axios - Front End Interface With a Backend REST API.
 - BootStrap - Styling Pages.
 
-### Back End
+### Backend
 - Flask-Restful - Object Oriented Programming(OOP) Backend REST API.
 - Flask-SQLAlchemy - Object-Relational Mappers(ORM), high-level abstraction that transfer database data into objects.
 - SQLite or PostgreSQL - Setup to work with the Relational Database SQLite or PostgreSQL.  
@@ -22,32 +22,12 @@ The application have the ability to:
 - [x] Display the CSV content showing at least all column headers and content
 - [x] Provide statistics on the number of people with the same year in the “date” field.
 
-
-# Backend Development Structure
+# CsvWepApp Backend
+## Backend Development Structure
 ##### The organization of the project's folders and files is shown below:
 
-- `app.py` : This file initializes and configure the Flask application and set up all API services. This file is the entry point to the CsvWebApp
-- `config.config.yaml` : This file contains Various requirement are defined in the `config.yaml`. These include:
-    - App Release Version
-    - App URI Path
-    - Temp Download Folder
-    - Logging information
-- `dev.db.db.py`:  This file create this project database Python object, so that other files can import it. All other files import the database variable from this file.
-            These reason for creating a separate files containing just this is precisely so it's easier to import and to avoid python's circular imports
-- `dev.env`: This folder contains all the environment needed to run the CsvWebApp based on the `.env` file. The behavior template method pattern is used to choose different environment 
-             such as running the app with a sqlite database(included in this project) or postgres(needs to be install separately)
-
-- `dev.mgr`: This folder contains all the business logic of each services and act as the middleman for the models(`dev.model.csv_web_model`) and services(`dev.service.csv_web_service`)
-
-- `dev.model.csv_web_model`: This file contains definition of what data our application deals with, and ways to interact with that data. 
-                             It contains the `CsvWebAppFileModel` and  CsvWebAppCsvModel classes. 
-                             A one-to-many relationship where a file(`csv_web_app_file` table) is associate with one or more csv data(`csv_web_app_csv` table).
-- `dev.service.csv_web_service` : this files define how clients interact with the CsvWebAPP REST API. It defines the endpoints where clients send requests, such as upload, download, display, get stats and get files. 
-- `setup.app_setup.py`: Setups config information base on the `config/config.yaml`
-- `dev.util`: This folder contains all the utilities functions that the CsvWebAbb needs to run.
-- `dev.temp`: This folder contains all the prepare file that are set to be downloaded from the Download Service.
 ```sh
-.
+src
 ├── app.py
 ├── config
 │   └── config.yaml
@@ -80,7 +60,37 @@ The application have the ability to:
 ├── temp
 │   └── test.csv
 ```
-# Backend Test Structure
+
+- `app.py` : This file initializes and configure the Flask application and set up all API services. This file is the entry point to the CsvWebApp
+- `config.config.yaml` : This file contains Various requirement are defined in the `config.yaml`. These include:
+    - App Release Version
+    - App URI Path
+    - Temp Download Folder
+    - Logging information
+- `dev.db.db.py`:  This file create this project database Python object, so that other files can import it. All other files import the database variable from this file.
+            These reason for creating a separate files containing just this is precisely so it's easier to import and to avoid python's circular imports
+- `dev.env`: This folder contains all the environment needed to run the CsvWebApp based on the `.env` file. The behavior template method pattern is used to choose different environment 
+             such as running the app with a sqlite database(included in this project) or postgres(needs to be install separately)
+
+- `dev.mgr`: This folder contains all the business logic of each services and act as the middleman for the models(`dev.model.csv_web_model`) and services(`dev.service.csv_web_service`)
+
+- `dev.model.csv_web_model`: This file contains definition of what data our application deals with, and ways to interact with that data. 
+                             It contains the `CsvWebAppFileModel` and  CsvWebAppCsvModel classes. 
+                             A one-to-many relationship where a file(`csv_web_app_file` table) is associate with one or more csv data(`csv_web_app_csv` table).
+- `dev.service.csv_web_service` : This files define how clients interact with the CsvWebAPP REST API. 
+                                  It defines the endpoints where clients send requests, such as upload, download, display, get stats and get files. 
+- `setup.app_setup.py`: This file setup config information base on the `config/config.yaml`.
+- `dev.util`: This folder contains all the utilities functions that the CsvWebAbb needs to run.
+- `dev.temp`: This folder contains all the prepare file that are set to be downloaded from the Download Service.
+## Backend Class  Diagram
+![ClassDiagram](./misc/CsvWepAppClassDiagram.png)
+
+### Services
+
+### Managers
+
+### Models
+## Backend Test Structure
 [write here]
 ```sh
 test
@@ -101,7 +111,30 @@ test
 ```
 
 # Front End Development Structure
-
+```sh
+frontend
+├── package.json
+└── src
+    ├── App.js
+    ├── Constants.js
+    ├── components
+    │   └── csvweb
+    │       ├── CsvWebApp.jsx
+    │       ├── CsvWebComponent.jsx
+    │       ├── FooterComponent.jsx
+    │       └── HeaderComponent.jsx
+    ├── index.css
+    ├── index.js
+    ├── service
+    │   └── CsvWebService.js
+```
+- `src.App.js` : This file is the container that embed all React components
+- `src.Constants.js`: This file contains the constant the constant HTTP base Url
+- `src.components.csvweb.CsvWebComponent.jsx`: This file contains the upload form, progress bar, display of list csv files with download url, 
+                                               display csv button and display stats button
+- `src.components.csvweb.CsvWebApp.jsx` : This file brings all the App components `HeaderComponent`, `FooterComponent` and `CsvWebComponent` together. 
+                                         
+- `src.service.CsvWebService.js`: This file provides the methods to upload, download, display, get stats and get csv files using Axios.                                    
 
 # Testing
 To run the testing script, run the command below in the terminal. 
