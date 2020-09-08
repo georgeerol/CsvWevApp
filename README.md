@@ -3,9 +3,9 @@ A Full Stack Web Application that handle CSV data
 
 ## Technology
 ### Frontend
-- React - Front End View Framework.
-- React Virtualized - Front End library to render large lists and tabular data.
-- Axios - Front End Interface With a Backend REST API.
+- React - Frontend View Framework.
+- React Virtualized - Frontend library to render large lists and tabular data.
+- Axios - Frontend Interface With a Backend REST API.
 - BootStrap - Styling Pages.
 
 ### Backend
