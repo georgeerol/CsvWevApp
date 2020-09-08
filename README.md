@@ -271,7 +271,7 @@ Open the app via Pycharm and set the project interpreter and structure located u
 * TodoApp
     * Backend: Spring Boot
     * Frontend: React
-    * github: https: https://github.com/georgeerol/ToDoApp
+    * github: https://github.com/georgeerol/ToDoApp
 ![ToDoPage](./misc/ToDoPage.png)
 
 
