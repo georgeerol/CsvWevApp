@@ -22,6 +22,29 @@ The application have the ability to:
 - [x] Display the CSV content showing at least all column headers and content
 - [x] Provide statistics on the number of people with the same year in the “date” field.
 
+### Upload a CSV file 
+To upload a csv file go to csvWeb tab and click on choose File then Upload button
+![UploadACsv](./misc/UploadACsv.png)
+---
+**NOTE**
+
+When uploading a big csv file wait until the message says Upload *yourFilename* Successfully
+
+---
+
+
+### List uploaded CSV files
+After a file is uploaded, a list of uploaded csv files is shown below the List of CSVs
+![LostUploadedCsvs](./misc/ListUploadedCSVs.png)
+
+### Download the previously uploaded CSV file 
+To download any csv files click on the filename
+![DownloadCSV](./misc/DownloadCSV.png)
+**When downloading a big csv file, wait few seconds. The file takes sometime  to be prepared**
+
+### Display the CSV content showing at least all column headers and content
+
+
 # CsvWepApp Backend
 ## Backend Development Structure
 ##### The organization of the project's folders and files is shown below:
