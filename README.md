@@ -131,11 +131,6 @@ src
 ## Backend Class  Diagram
 ![ClassDiagram](./misc/CsvWepAppClassDiagram.png)
 
-### Services
-
-### Managers
-
-### Models
 ## Backend Test Structure
 Tests are setup as system, integration and unit test.
 
@@ -256,9 +251,27 @@ Open the app via Pycharm and set the project interpreter and structure located u
 ### Set the src as the source folder. This will set the `PYTHONPATH` as src.
 ![ProjectStruct](./misc/ProjectStructure.png)
 
-### Run the app.py by clicking on the run button(line 33) and then edit the configuration with the information below
+### Run the app.py by clicking on the run button(line 33) and then `Edit Configuration` with the information below
 ![RunAPP](./misc/RunApp.png)
 ![RunAPP](./misc/EditConfiguration.png)
+
+# Future Work
+* Add more unit,integration and system tests.
+* Fix footer when big data is displayed.
+* Frontend to accept negative request from backend.
+
+# Similar projects
+* ProjectManagementApp
+    * Backend: Spring Boot
+    * Frontend: Thymeleaf
+    * github: https://github.com/georgeerol/ProjectManagementApp
+    
+* TodoApp
+    * Backend: Spring Boot
+    * Frontend: React
+    * github: https: https://github.com/georgeerol/ToDoApp
+
+
 
 
 
