@@ -3,7 +3,7 @@ import io
 from dev.model.csv_web_model import CsvWebAppFileModel, CsvWebAppCsvModel
 
 
-class UploadManager:
+class UploadCsvManager:
 
     def __init__(self, file):
         self.__file = file

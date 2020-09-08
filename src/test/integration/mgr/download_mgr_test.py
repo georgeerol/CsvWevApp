@@ -1,6 +1,6 @@
 import os
 from test.base_test import BaseTest
-from dev.mgr.download_mgr import DownloadCsvFileManager
+from dev.mgr.download_mgr import DownloadCsvManager
 from dev.model.csv_web_model import CsvWebAppCsvModel
 from dev.model.csv_web_model import CsvWebAppFileModel
 from dev.util.helper.get_config import get_config_value
@@ -27,7 +27,7 @@ class DownloadCsvFileManagerTest(BaseTest):
             csv_model = CsvWebAppCsvModel(guid, name, first, last, email, value, date, phone, age, state, street)
             file_model = CsvWebAppFileModel(filename, content_type, [csv_model])
             file_model.save_to_db()
-            download_mgr = DownloadCsvFileManager(filename)
+            download_mgr = DownloadCsvManager(filename)
             download_mgr_msg = download_mgr.prepare_csv_file()
             self.assertEqual({'message': 'Done'}, download_mgr_msg)
             os.remove(get_config_value('temp_download_folder') + '/' + filename)

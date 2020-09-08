@@ -1,7 +1,7 @@
 from dev.model.csv_web_model import CsvWebAppFileModel
 
 
-class DisplayManager:
+class DisplayCsvManager:
 
     def __init__(self, filename):
         self.__filename = filename
