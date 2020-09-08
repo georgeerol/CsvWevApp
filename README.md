@@ -199,7 +199,7 @@ $ ./test/test.sh
 The ./test.sh will run the `test_suite.py` which contains unit, integration and system tests. The results of these tests are reported in the Terminal.
 
 # Code Coverage Testing
-You can test to see how much of the orchestration code is run via `test_suite.py` by generating a coverage report.
+You can test to see how much of the CsvWebApp code is run via `test_suite.py` by generating a coverage report.
 First, install coverage in Terminal using
 ``` sh
 $ pip install coverage
