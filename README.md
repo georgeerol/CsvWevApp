@@ -137,24 +137,36 @@ src
 
 ### Models
 ## Backend Test Structure
-[write here]
+Tests are setup as system, integration and unit test.
+
 ```sh
 test
-    ├── base_test.py
-    ├── integration
-    │   └── mgr
-    │       ├── display_mgr_test.py
-    │       ├── download_mgr_test.py
-    │       ├── get_files_mgr_test.py
-    │       ├── stats_mgr_test.py
-    │       └── upload_mgr_test.py
-    ├── system
-    ├── test.sh
-    ├── test_suite.py
-    └── unit
-        └── util
-            └── yaml_test.py
+├── base_test.py
+├── integration
+│   └── mgr
+│       ├── display_mgr_test.py
+│       ├── download_mgr_test.py
+│       ├── get_files_mgr_test.py
+│       ├── stats_mgr_test.py
+│       └── upload_mgr_test.py
+├── system
+│   └── service
+│       ├── csv_web_display_service_test.py
+│       ├── csv_web_get_files_service_test.py
+│       ├── csv_web_stats_service_test.py
+│       └── csv_web_upload_service_test.py
+├── test.sh
+├── test_suite.py
+└── unit
+    └── util
+        └── yaml_test.py
+
 ```
+
+- `base_test`: this file is  the parent class to each non-unit tests. It allows for instantiation of the database  dynamically and makes
+   sure that it is a new, blank database each time.
+- `test.sh` : Run this script to run all tests.
+- `test_suite`: This file contains all the tests as list and run all of them.
 
 # Front End Development Structure
 ```sh
