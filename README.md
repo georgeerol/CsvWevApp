@@ -222,3 +222,46 @@ $ coverage html
 `coverage html` will create an interactive html file that you can open in a web browser. This html file is stored
 in the path `src/htmlcov/index.html`. Find this in your file explorer and double-click it to open it in your 
 default browser. You can use this file to see exactly which lines of code have been run, and which have not.
+
+# Running the APP via the terminal
+
+### Backend
+To run the backend(Python 3.6 or higher), in the main directory run these command below in a terminal.
+```sh
+$ pip install -r requirements.txt
+$ cd src
+$ chmod 777 run.sh
+$ ./run.sh
+```
+The ./run.sh will run the app.py with the information provided in `.env` . A sqlite db will be automatically created as soon as the backend
+receive a request. 
+
+### Frontend
+To run the frontend, open a new terminal, in the main directory, run these commands below in a terminal:
+```sh
+$ cd src
+$ npm install
+$ npm start
+```
+*Note*: Make sure you have node.js installed to run npm 
+
+# Running the Backend via Pycharm
+Open the app via Pycharm and set the project interpreter and structure located under Pycharm -> Preferences
+![PycharmPreference](./misc/PyCharmPreference.png)
+![PycharmIntAndStruct](./misc/ProjectIntAndStruc.png)
+
+#### Set the project interpreter to a python 3.6 or higher.
+![ProjectInt](./misc/ProjectInterpreter.png)
+
+### Set the src as the source folder. This will set the `PYTHONPATH` as src.
+![ProjectStruct](./misc/ProjectStructure.png)
+
+### Run the app.py by clicking on the run button(line 33) and then edit the configuration with the information below
+![RunAPP](./misc/RunApp.png)
+![RunAPP](./misc/EditConfiguration.png)
+
+
+
+
+
+
