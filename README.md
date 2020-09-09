@@ -1,5 +1,5 @@
 # CSV Web Application
-A Full Stack Web Application that handles CSV data
+A Full Stack Web Application that handles CSV data.
 
 ## Technology
 ### Frontend
@@ -23,14 +23,14 @@ The application has the ability to:
 - [x] Provide statistics on the number of people with the same year in the “date” field.
 
 ### Upload a CSV file  
-To upload a csv file go to csvWeb tab and click on choose File then Upload button
+To upload a csv file go to the csvWeb tab and click on Choose File, then Upload button.
 
 ![UploadACsv](./misc/UploadACsv.png)
 
 ---
 **NOTE**
 
-*When uploading a big csv file wait until the message says Upload {yourFilename} Successfully*
+*When uploading a big csv file, wait until the message says Upload {yourFilename} Successfully*
 
 ---
 
@@ -46,24 +46,24 @@ To download any csv files click on the filename
 ---
 **NOTE**
 
-*When downloading a big csv file, wait a few seconds. The file takes sometime to be prepared.*
+*When downloading a big csv file, wait a few seconds. The file takes some time to be prepared.*
 
 ---
 
 
 ### Display the CSV content showing at least all column headers and content
-To display a csv content click on the Display button. Scroll down to see the rest of the file
+To display a csv content, click on the Display button. Scroll down to see the rest of the file
 ![DisplayCSV](./misc/DisplayCSV.png)
 
 ---
 **NOTE**
 
-*When displaying a big csv file, wait a few seconds. The file takes sometime to render on the page.*
+*When displaying a big csv file, wait a few seconds. The file takes some time to render on the page.*
 
 ---
 
 ### Provide statistics on the number of people with the same year in the “date” field.
-To display the stats on the number of people with the same year click on the Date Statistics button. 
+To display the stats on the number of people with the same year, click on the Date Statistics button. 
 Scroll down to see the rest of the file.
 ![DisplayCSVStats](./misc/DisplayCsvStats.png)
 
@@ -107,20 +107,19 @@ src
 │   └── test.csv
 ```
 
-- `app.py` : This file initializes and configure the Flask application and set up all API services. It is the entry point to the CsvWebApp
+- `app.py` : This file initializes and configures the Flask application and sets all API services. It is the entry point to the CsvWebApp
 - `config.config.yaml` : This file contains various requirement which are defined in the `config.yaml`. These include:
     - App Release Version
     - App URI Path
     - Temp Download Folder
     - Logging information
 - `dev.db.db.py`:  This file creates this project database python object, so that other files can import it. All other files import the database variable from it.
-            The reason for creating a separate file containing just this is precisely so it's easier to import and to avoid python's circular imports.
-- `dev.env`: This folder contains all the environment needed to run the CsvWebApp based on the `.env` file. The behavior template method pattern is used to choose different environment 
-             such as running the app with a sqlite database(included in this project) or postgres(needs to be install separately)
+            The reason for creating a separate file containing is to make it easier to import and to avoid python's circular imports.
+- `dev.env`: This folder contains all the environment needed to run the CsvWebApp based on the `.env` file. The behavior template method pattern is used to choose a different environment such as running the app with a SQLite database(included in this project) or Postgres(needs to be installed separately)
 
 - `dev.mgr`: This folder contains all the business logic of each services and act as the middleman for the models(`dev.model.csv_web_model`) and services(`dev.service.csv_web_service`)
 
-- `dev.model.csv_web_model`: This file contains definition of what data our application deals with, and ways to interact with that data. 
+- `dev.model.csv_web_model`: This file contains definitions of what data our application deals with and ways to interact with that data. 
                              It contains the `CsvWebAppFileModel` and  CsvWebAppCsvModel classes. 
                              A one-to-many relationship where a file(`csv_web_app_file` table) is associate with one or more csv data(`csv_web_app_csv` table).
 - `dev.service.csv_web_service` : This file defines how clients interact with the CsvWebAPP REST API. 
@@ -227,7 +226,7 @@ $ cd src
 $ chmod 777 run.sh
 $ ./run.sh
 ```
-The ./run.sh will run the app.py with the information provided in `.env` . A sqlite db will be automatically created as soon as the backend
+The ./run.sh will run the app.py with the information provided in `.env` . An SQLite database will be automatically created as soon as the backend
 receive a request. 
 
 ### Frontend
@@ -255,9 +254,9 @@ Open the app via Pycharm and set the project interpreter and structure located u
 ![RunAPP](./misc/EditConfiguration.png)
 
 # Future Work
-* Add more unit, integration and system tests.
+* Add more unit, integration, and system tests.
 * Fix footer when big data is displayed.
-* Frontend to accept negative request from backend.
+* Frontend to accept negative request from the backend.
 * Setup DevOps with Travis.
 * Data Validation
 * Use temp folder as a cache system for the download service
