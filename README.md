@@ -15,7 +15,7 @@ A Full Stack Web Application that handles CSV data
 
 
 # Requirements
-The application have the ability to:
+The application has the ability to:
 - [x] Upload a CSV file 
 - [x] List uploaded CSV files  
 - [x] Download the previously uploaded CSV file 
