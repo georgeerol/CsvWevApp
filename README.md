@@ -257,10 +257,12 @@ Open the app via Pycharm and set the project interpreter and structure located u
 ![RunAPP](./misc/EditConfiguration.png)
 
 # Future Work
-* Add more unit,integration and system tests.
+* Add more unit, integration and system tests.
 * Fix footer when big data is displayed.
 * Frontend to accept negative request from backend.
 * Setup DevOps with Travis.
+* Data Validation
+* Use temp folder as a cache system for the download service
 
 # Similar projects
 * ProjectManagementApp
