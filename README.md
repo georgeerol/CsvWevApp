@@ -124,10 +124,10 @@ src
                              It contains the `CsvWebAppFileModel` and  CsvWebAppCsvModel classes. 
                              A one-to-many relationship where a file(`csv_web_app_file` table) is associate with one or more csv data(`csv_web_app_csv` table).
 - `dev.service.csv_web_service` : This file defines how clients interact with the CsvWebAPP REST API. 
-                                  It defines the endpoints where clients send requests, such as upload, download, display, get stats and get files. 
-- `setup.app_setup.py`: This file setup config information base on the `config/config.yaml`.
+                                  It defines the endpoints where clients send requests, such as upload, download, display, get stats, and get files. 
+- `setup.app_setup.py`: This file sets the app config information base on the `config/config.yaml`.
 - `dev.util`: This folder contains all the utilities that the CsvWebAbb needs to run.
-- `dev.temp`: This folder contains all the prepare file that are set to be downloaded from the Download Service.
+- `dev.temp`: This folder contains all the prepare files that are set to be downloaded from the Download Service.
 ## Backend Class  Diagram
 ![ClassDiagram](./misc/CsvWepAppClassDiagram.png)
 
@@ -158,10 +158,9 @@ test
 
 ```
 
-- `base_test`: this file is  the parent class to each non-unit tests. It allows for instantiation of the database  dynamically and makes
-   sure that it is a new, blank database each time.
+- `base_test`: This file is the parent class for each non-unit tests. It allows for instantiation of the database dynamically and makes sure that it is a new, blank database each time.
 - `test.sh` : Run this script to run all tests.
-- `test_suite`: This file contains all the tests as list and run all of them.
+- `test_suite`: This file contains all the tests as a list and runs all of them.
 
 # Front End Development Structure
 ```sh
@@ -181,13 +180,12 @@ frontend
     ├── service
     │   └── CsvWebService.js
 ```
-- `src.App.js` : This file is the container that embed all React components
-- `src.Constants.js`: This file contains the constant the constant HTTP base Url
-- `src.components.csvweb.CsvWebComponent.jsx`: This file contains the upload form, progress bar, display of list csv files with download url, 
-                                               display csv button and display stats button
+- `src.App.js` : This file is the container that embeds all React components.
+- `src.Constants.js`: This file contains the constant HTTP base Url
+- `src.components.csvweb.CsvWebComponent.jsx`: This file contains the upload form, progress bar, display of list csv files with download url, display csv button, and display stats button.
 - `src.components.csvweb.CsvWebApp.jsx` : This file brings all the App components `HeaderComponent`, `FooterComponent` and `CsvWebComponent` together. 
                                          
-- `src.service.CsvWebService.js`: This file provides the methods to upload, download, display, get stats and get csv files using Axios.                                    
+- `src.service.CsvWebService.js`: This file provides the methods to upload, download, display, get stats, and get csv files using Axios.                                    
 
 # Testing
 To run the testing script, run the command below in the terminal. 
